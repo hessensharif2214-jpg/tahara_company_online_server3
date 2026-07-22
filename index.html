@@ -281,7 +281,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end sm:items-center justify-center sm:justify-start p-4 sm:p-8">
                             <div class="text-right max-w-md w-full">
                                 <h2 class="slider-text slider-text-delay-1 text-xl sm:text-3xl md:text-4xl font-bold text-white text-glow mb-1 sm:mb-2">
-                                    <span class="text-gold-gradient">عطور</span> أصلية 100%
+                                    <span class="text-gold-gradient">تشكيلة</span> أمميزة
                                 </h2>
                                 <p class="slider-text slider-text-delay-2 text-sm sm:text-base md:text-lg text-white/90 text-glow-light font-medium mb-2 sm:mb-3">
                                     تشكيلة واسعة من أفخم العطور العالمية
@@ -329,7 +329,7 @@
                 <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 section-golden-title">
                     <i class="fa-solid fa-sparkles text-[#d4af37]"></i> عطور ومنتجات العناية
                 </h3>
-                <span class="text-[10px] text-slate-400 font-medium">(المنتجات الأصلية)</span>
+                <span class="text-[10px] text-slate-400 font-medium">(المنتجات المتاحة)</span>
             </div>
             <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10"></div>
 
@@ -451,11 +451,11 @@
                 type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "15.jpg",
                 images: ["15.jpg", "12.jpg", "13.jpg"],
                 description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
-            { id: 12, name: "عطر ديور سوفاج الرجالي الفاخر - Dior Sauvage (100ml)", price: 220, pastPrice: 230,
+            { id: 12, name: "عطر ديور سوفاج الرجالي الفاخر - Dior Sauvage (100ml)", price: 200, pastPrice: 230,
                 type: "عطور رجالي عالمية", size: "100 مل", rating: 4, feedbacks: [], image: "12.jpg",
                 images: ["12.jpg", "16.jpg", "14.jpg"],
                 description: "عطر ديور سوفاج الأيقوني للرجال، تركيبة فائقة الانتعاش والجرأة بنفحات البرغموت وأخشاب العنبر." },
-            { id: 13, name: "عطر ماء الذهب شيك الأنيق - Parfumerie Chic (100ml)", price: 210, pastPrice: 220,
+            { id: 13, name: "عطر ماء الذهب شيك الأنيق - Parfumerie Chic (100ml)", price: 200, pastPrice: 220,
                 type: "عطور للجنسين", size: "100 مل", rating: 4, feedbacks: [], image: "13.jpg",
                 images: ["13.jpg", "15.jpg"],
                 description: "عطر شيك من ماء الذهب، تركيبة فاخرة ومثيرة تناسب الذوق الرفيع وبثبات عالي يدوم طويلاً." },
@@ -516,91 +516,91 @@
         // --- جميع المنتجات الجديدة (للرجال والنساء) ---
         const clothesProducts = [
             // سيروم فيتامين سي - Disaar
-            { id: 400, name: "سيروم تبييض الوجه فيتامين سي - Disaar Vitamin C Serum", price: 120, pastPrice: 160,
+            { id: 400, name: "سيروم تبييض الوجه فيتامين سي - Disaar Vitamin C Serum", price: 100, pastPrice: 120,
                 type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [],
                 image: "1710924187_serum-600x600.jpg",
                 images: ["1710924187_serum-600x600.jpg"],
                 description: "سيروم تبييض الوجه من Disaar، غني بحمض الهيالورونيك وفيتامين سي، يعمل على تفتيح البشرة ومكافحة الشيخوخة وتغذية عميقة." },
             // ماكينة حلاقة Schick
-            { id: 401, name: "ماكينة حلاقة شيك - Schick Intuition Lather & Shave", price: 95, pastPrice: 120,
+            { id: 401, name: "ماكينة حلاقة شيك - Schick Intuition Lather & Shave", price: 470, pastPrice: 520,
                 type: "العناية الشخصية", size: "قطعة واحدة", rating: 5, feedbacks: [],
                 image: "1710943709_shick-600x600.jpg",
                 images: ["1710943709_shick-600x600.jpg"],
                 description: "ماكينة حلاقة Schick Intuition، تجمع بين الرغوة والحلاقة في خطوة واحدة، تحتوي على الصبار العضوي لترطيب البشرة." },
             // مقشر الجسم Starky
-            { id: 402, name: "مقشر للوجه والجسم مشمش - Starky Apricot Scrub", price: 70, pastPrice: 90,
+            { id: 402, name: "مقشر للوجه والجسم مشمش - Starky Apricot Scrub", price: 30, pastPrice: 45,
                 type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
                 image: "1717270435_660-600x600.jpg",
                 images: ["1717270435_660-600x600.jpg"],
                 description: "مقشر للوجه والجسم من Starky برائحة المشمش، ينظف البشرة بعمق ويمنحها نعومة وإشراقة." },
             // مقشر الجسم Starky Aloe Vera
-            { id: 403, name: "مقشر للوجه والجسم بالصبار - Starky Aloe Vera Scrub", price: 75, pastPrice: 95,
+            { id: 403, name: "مقشر للوجه والجسم بالصبار - Starky Aloe Vera Scrub", price: 30, pastPrice: 45,
                 type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
                 image: "1717270859_677-600x600.png",
                 images: ["1717270859_677-600x600.png"],
                 description: "مقشر للوجه والجسم من Starky بالصبار، ينظف البشرة بعمق، يبيض البشرة، يقلل التجاعيد والبقع، مناسب لجميع أنواع البشرة." },
             // بلسم شفاه Trend
-            { id: 404, name: "بلسم شفاه تريد روزي ليبس - Trend Rosy Lips", price: 45, pastPrice: 60,
+            { id: 404, name: "بلسم شفاه تريد روزي ليبس - Trend Rosy Lips", price: 29, pastPrice: 35,
                 type: "العناية بالشفاه", size: "7 جرام", rating: 5, feedbacks: [],
                 image: "1717329688_690-600x600.jpg",
                 images: ["1717329688_690-600x600.jpg"],
                 description: "بلسم شفاه Trend Rosy Lips، يوفر ترطيباً عميقاً للشفاه ويمنحها نعومة ونضارة." },
             // سكراب العسل والكولاجين
-            { id: 405, name: "سكراب العسل والكولاجين للبشرة - Honey & Collagen Scrub (300ml)", price: 85, pastPrice: 110,
+            { id: 405, name: "سكراب العسل والكولاجين للبشرة - Honey & Collagen Scrub (300ml)", price: 60, pastPrice: 65,
                 type: "عناية بالبشرة", size: "300 مل", rating: 5, feedbacks: [],
                 image: "1720096771_22-600x600.png",
                 images: ["1720096771_22-600x600.png"],
                 description: "سكراب للبشرة بتركيبة العسل والكولاجين من Bo Bana، ينعم البشرة ويغذيها بعمق، بحجم 300 مل." },
             // كريم فيتامين سي - Disaar
-            { id: 406, name: "كريم فيتامين سي المشرق - Disaar Vitamin C Cream", price: 130, pastPrice: 170,
+            { id: 406, name: "كريم فيتامين سي المشرق - Disaar Vitamin C Cream", price: 180, pastPrice: 230,
                 type: "عناية بالبشرة", size: "50 مل", rating: 5, feedbacks: [],
                 image: "1721913773_1229-600x600.jpg",
                 images: ["1721913773_1229-600x600.jpg"],
                 description: "كريم فيتامين سي من Disaar، يعمل على تفتيح البشرة وتوحيد لونها، غني بحمض الهيالورونيك للتغذية العميقة ومكافحة الشيخوخة." },
             // زيت شعر Eva
-            { id: 407, name: "زيت تقوية الشعر إيفا - Eva Strengthening Hair Oil", price: 65, pastPrice: 85,
+            { id: 407, name: "زيت تقوية الشعر إيفا - Eva Strengthening Hair Oil", price: 50, pastPrice: 65,
                 type: "العناية بالشعر", size: "100 مل", rating: 5, feedbacks: [],
                 image: "1725527723_1731.jpg",
                 images: ["1725527723_1731.jpg", "1725527863_1731.jpg"],
                 description: "زيت تقوية الشعر من إيفا، غني بالصبار وزيت الأركان المغربي، يرطب الشعر بعمق ويزيل هيشان الشعر ويقضي على التقصف." },
             // عطر Jacques Bogart
-            { id: 408, name: "عطر جاك بوجارت سيلفر سينت - Jacques Bogart Silver Scent (100ml)", price: 350, pastPrice: 430,
+            { id: 408, name: "عطر جاك بوجارت سيلفر سينت - Jacques Bogart Silver Scent (100ml)", price: 270, pastPrice: 320,
                 type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [],
                 image: "1737997458_2504-600x600.jpg",
                 images: ["1737997458_2504-600x600.jpg"],
                 description: "عطر جاك بوجارت سيلفر سينت، عطر رجالي فاخر يدوم طويلاً، تركيبة عطرية مميزة تناسب الشخصية الجذابة." },
             // عطر Dolce & Gabbana The One
-            { id: 409, name: "عطر دولتشي اند غابانا ذا ون - Dolce & Gabbana The One (100ml)", price: 420, pastPrice: 520,
+            { id: 409, name: "عطر دولتشي اند غابانا ذا ون - Dolce & Gabbana The One (100ml)", price: 270, pastPrice: 320,
                 type: "عطور رجالي ونسائي", size: "100 مل", rating: 5, feedbacks: [],
                 image: "1737997543_2528-600x600.jpg",
                 images: ["1737997543_2528-600x600.jpg"],
                 description: "عطر دولتشي اند غابانا ذا ون، عطر كلاسيكي فاخر يناسب الرجال والنساء، تركيبة عطرية دافئة وجذابة." },
             // معطر جو Fida
-            { id: 410, name: "معطر جو فريدا تريشر - Fida Air Freshener Treasure (50ml)", price: 40, pastPrice: 55,
+            { id: 410, name: "معطر جو فريدا تريشر - Fida Air Freshener Treasure (50ml)", price: 60, pastPrice: 70,
                 type: "معطرات جو منزلية", size: "50 مل", rating: 5, feedbacks: [],
                 image: "1741178526_2873-600x600.png",
                 images: ["1741178526_2873-600x600.png"],
                 description: "معطر جو فريدا تريشر، سائل جاف برائحة منعشة تدوم طويلاً، مثالي للاستخدام في المنزل والسيارة." },
             // سيروم الوجه Eva Niacinamide
-            { id: 411, name: "سيروم الوجه نياسيناميد إيفا - Eva Niacinamide Face Serum", price: 140, pastPrice: 180,
+            { id: 411, name: "سيروم الوجه نياسيناميد إيفا - Eva Niacinamide Face Serum", price: 260, pastPrice: 300,
                 type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [],
                 image: "1742647965_2935-600x600.jpg",
                 images: ["1742647965_2935-600x600.jpg"],
                 description: "سيروم للوجه من إيفا بتركيبة النياسيناميد، يعمل على مكافحة الشيخوخة وترطيب البشرة وتوحيد لونها، تقنية متعددة المهام." },
             // مياه ميسيلار
-            { id: 412, name: "مياه ميسيلار للوجه - Micellar Water (200ml)", price: 70, pastPrice: 90,
+            { id: 412, name: "كير اند مور غسول للبشرة الجافة والعادية 150 مل", price: 85, pastPrice: 95,
                 type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
                 image: "1744639936_3033-600x600.jpg",
                 images: ["1744639936_3033-600x600.jpg"],
                 description: "مياه ميسيلار من Care & More، تنظف البشرة وترطبها وتنقيها بعمق، مثالية لإزالة المكياج والشوائب." },
             // عطر Fogg Victor
-            { id: 413, name: "عطر فوج فيكتور - Fogg Victor Perfume Spray", price: 140, pastPrice: 180,
+            { id: 413, name: "عطر فوج فيكتور - Fogg Victor Perfume Spray", price: 110, pastPrice: 130,
                 type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [],
                 image: "Screenshot 2026-07-21 163450.png",
                 images: ["Screenshot 2026-07-21 163450.png"],
                 description: "عطر فوج فيكتور للرجال، عطر جذاب ومنعش يناسب الشخصية العصرية، يدوم طويلاً ويمنحك ثقة لا تُقهر." },
             // عطر Fogg Essence
-            { id: 414, name: "عطر فوج إيسنس - Fogg Essence Fortune Spray (120ml)", price: 150, pastPrice: 190,
+            { id: 414, name: "عطر فوج إيسنس - Fogg Essence Fortune Spray (120ml)", price: 110, pastPrice: 130,
                 type: "عطور نسائية", size: "120 مل", rating: 5, feedbacks: [],
                 image: "1711716836_dhd-1-600x600.jpg",
                 images: ["1711716836_dhd-1-600x600.jpg"],
@@ -654,7 +654,7 @@
                 images: ["1747486224_3380-600x600.png"],
                 description: "مزيل عرق زاك Bodyguard Fresh، انتعاش طويل الأمد يدوم 48 ساعة، مثالي للاستخدام اليومي." },
             // ماكينات VGR
-            { id: 308, name: "ماكينة حلاقة VGR V-999 Professional", price: 250, pastPrice: 320,
+            { id: 308, name: "ماكينة حلاقة VGR V-999 Professional", price: 430, pastPrice: 470,
                 type: "أدوات حلاقة احترافية", size: "جهاز + ملحقات", rating: 5, feedbacks: [],
                 image: "1711825885_vaga.jpg",
                 images: ["1711825885_vaga.jpg"],
@@ -669,7 +669,7 @@
                 image: "1757601628_2379-2-600x600.jpg",
                 images: ["1757601628_2379-2-600x600.jpg"],
                 description: "شفرة حلاقة حادة من VGR، مصممة لتوفير حلاقة ناعمة وآمنة، مثالية للاستخدام اليومي." },
-            { id: 311, name: "آلة حلاقة متعددة الاستخدامات VGR V-1721", price: 260, pastPrice: 330,
+            { id: 311, name: "آلة حلاقة متعددة الاستخدامات VGR V-1721", price: 630, pastPrice: 750,
                 type: "أدوات حلاقة احترافية", size: "جهاز + رؤوس", rating: 5, feedbacks: [],
                 image: "1757631681_2376r.jpg",
                 images: ["1757631681_2376r.jpg"],
