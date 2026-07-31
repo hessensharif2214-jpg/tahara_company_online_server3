@@ -440,11 +440,6 @@
                     <span>خصم 100 جنيه عند الشراء للعملاء الجدد</span>
                 </div>
 
-                <!-- Dark Theme Toggle Button -->
-                <button onclick="toggleTheme()" class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 p-3 rounded-xl transition-colors border border-slate-200 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-600" aria-label="الوضع الليلي">
-                    <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
-                </button>
-
                 <button onclick="toggleCart()" class="relative bg-brand-soft hover:bg-[#f0e4c8] dark:hover:bg-[#3a2f1c] text-brand p-3 rounded-xl transition-colors border border-slate-100 dark:border-slate-700" aria-label="سلة المشتريات">
                     <i class="fa-solid fa-basket-shopping text-xl"></i>
                     <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
@@ -680,36 +675,21 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        /* Dark Theme Management */
+        /* Dark Theme Management - simplified, no toggle button */
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.classList.add('dark');
-                updateThemeIcon(true);
             } else {
                 document.documentElement.classList.remove('dark');
-                updateThemeIcon(false);
             }
         }
 
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateThemeIcon(isDark);
-        }
+        // No toggle function needed, but keep for compatibility
 
-        function updateThemeIcon(isDark) {
-            const icon = document.getElementById('theme-icon');
-            if (!icon) return;
-            if (isDark) {
-                icon.className = 'fa-solid fa-sun text-xl text-amber-400';
-            } else {
-                icon.className = 'fa-solid fa-moon text-xl text-slate-700';
-            }
-        }
-
+        // Base products with default feedbacks (will be overridden by localStorage)
         const baseProducts = [
             { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345,
                 type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "324234234.jpg",
@@ -921,7 +901,48 @@
                 description: "آلة حلاقة VGR V-1721 متعددة الاستخدامات، مثالية للعناية بالشعر واللحية، بتصميم احترافي." }
         ];
 
+        // Combine all products
         const allProducts = [...baseProducts, ...clothesProducts];
+
+        // Function to load feedbacks from localStorage
+        function loadFeedbacksFromStorage() {
+            const stored = localStorage.getItem('productFeedbacks');
+            if (stored) {
+                try {
+                    const feedbackData = JSON.parse(stored);
+                    // Merge stored feedbacks into products
+                    allProducts.forEach(product => {
+                        if (feedbackData[product.id]) {
+                            product.feedbacks = feedbackData[product.id];
+                            // Recalculate rating
+                            if (product.feedbacks.length > 0) {
+                                let sum = 0;
+                                product.feedbacks.forEach(f => sum += f.stars);
+                                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
+                            } else {
+                                product.rating = 4; // default fallback
+                            }
+                        }
+                    });
+                } catch (e) {
+                    console.warn('Failed to parse feedback data', e);
+                }
+            }
+        }
+
+        // Function to save feedbacks to localStorage
+        function saveFeedbacksToStorage() {
+            const feedbackData = {};
+            allProducts.forEach(product => {
+                if (product.feedbacks && product.feedbacks.length > 0) {
+                    feedbackData[product.id] = product.feedbacks;
+                }
+            });
+            localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData));
+        }
+
+        // Load feedbacks on startup
+        loadFeedbacksFromStorage();
 
         let cart = [];
         const WHATSAPP_NUMBER = "201121875820";
@@ -1383,16 +1404,27 @@
             const product = findProduct(productId);
             if (!product) return;
 
+            // Add new feedback
             product.feedbacks.unshift({
                 name: nameInput.value.trim(),
                 stars: activeFeedbackStars,
                 comment: commentInput.value.trim()
             });
 
-            let totalStars = 4;
-            product.feedbacks.forEach(f => totalStars += f.stars);
-            product.rating = Math.min(5, Math.round(totalStars / (product.feedbacks.length + 1)));
+            // Recalculate rating
+            let sum = 0;
+            product.feedbacks.forEach(f => sum += f.stars);
+            product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
 
+            // Save to localStorage
+            saveFeedbacksToStorage();
+
+            // Clear form
+            nameInput.value = '';
+            commentInput.value = '';
+            setFeedbackStars(5);
+
+            // Refresh UI
             displayProducts();
             viewProductDetails(productId);
         }
