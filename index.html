@@ -3,30 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Mobile / Android Web App Optimizations -->
     <meta name="theme-color" content="#b8860b">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>شركة طهارة - Tahara company</title>
 
-    <!-- Tailwind CSS (Play CDN) with dark mode strategy enabled -->
     <script>
-        tailwind = {
-            darkMode: 'class'
-        }
+        tailwind = { darkMode: 'class' }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Optimized Font Loading: Cairo (Body) & Aref Ruqaa (Header / Titles) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&display=swap">
 
-    <!-- Asynchronous Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
     <style>
+        /* your existing styles ... (kept as is) */
         html {
             font-size: 115%;
             -webkit-tap-highlight-color: transparent;
@@ -37,28 +32,15 @@
             overscroll-behavior-y: none;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        /* Dark Mode Body Background Override */
         html.dark body {
             background-color: #0f172a;
             color: #f8fafc;
         }
-
-        /* Ruqaa Arabic Calligraphy Styling */
         .font-ruqaa {
             font-family: 'Aref Ruqaa', 'Cairo', serif !important;
         }
-
-        /* Golden Shining Text Animation */
         .shining-gold-text {
-            background: linear-gradient(
-                90deg, 
-                #b8860b 0%, 
-                #ffd700 25%, 
-                #ffffff 50%, 
-                #ffd700 75%, 
-                #b8860b 100%
-            );
+            background: linear-gradient(90deg, #b8860b 0%, #ffd700 25%, #ffffff 50%, #ffd700 75%, #b8860b 100%);
             background-size: 200% auto;
             color: #b8860b;
             -webkit-background-clip: text;
@@ -67,346 +49,67 @@
             animation: shine 3s linear infinite;
             filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
         }
-
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
-
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 4px;
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 2px;
-        }
-        html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #334155;
-        }
-        
-        /* Golden frame style */
+        @keyframes shine { to { background-position: 200% center; } }
+        .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 2px; }
+        html.dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; }
         .golden-frame {
             border: 5px solid transparent;
-            background-image: linear-gradient(white, white),
-                linear-gradient(to right, #b8860b, #d4af37, #b8860b);
+            background-image: linear-gradient(white, white), linear-gradient(to right, #b8860b, #d4af37, #b8860b);
             background-origin: padding-box, border-box;
             background-clip: padding-box, border-box;
             transition: box-shadow 0.2s ease;
         }
         html.dark .golden-frame {
-            background-image: linear-gradient(#1e293b, #1e293b),
-                linear-gradient(to right, #b8860b, #d4af37, #b8860b);
+            background-image: linear-gradient(#1e293b, #1e293b), linear-gradient(to right, #b8860b, #d4af37, #b8860b);
         }
-        .golden-frame:hover {
-            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.3);
-        }
-        .golden-detail-border {
-            border: 5px solid #b8860b;
-            box-shadow: 0 0 15px rgba(184, 134, 11, 0.15);
-        }
-        .section-golden-title {
-            border-bottom: 2px solid #b8860b;
-            padding-bottom: 6px;
-            display: inline-block;
-        }
-
-        /* Text animations */
-        .slider-text {
-            opacity: 50;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
+        .golden-frame:hover { box-shadow: 0 4px 20px rgba(184, 134, 11, 0.3); }
+        .golden-detail-border { border: 5px solid #b8860b; box-shadow: 0 0 15px rgba(184, 134, 11, 0.15); }
+        .section-golden-title { border-bottom: 2px solid #b8860b; padding-bottom: 6px; display: inline-block; }
+        .slider-text { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s ease forwards; }
         .slider-text-delay-1 { animation-delay: 0.2s; }
         .slider-text-delay-2 { animation-delay: 0.5s; }
         .slider-text-delay-3 { animation-delay: 0.8s; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .slider-slide.active .slider-text {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .text-glow {
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-        }
-        .text-glow-light {
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-        }
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #b8860b, #d4af37, #b8860b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .pulse-gold {
-            animation: pulseGold 2s ease-in-out infinite;
-        }
-        @keyframes pulseGold {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(184, 134, 11, 0); }
-        }
-
-        /* Fullscreen image viewer with zoom */
-        .image-viewer-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.92);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            cursor: pointer;
-            backdrop-filter: blur(6px);
-            transition: opacity 0.25s ease;
-        }
-        .image-viewer-overlay.active {
-            display: flex;
-        }
-        .image-viewer-overlay .viewer-content {
-            position: relative;
-            max-width: 95%;
-            max-height: 95%;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(184, 134, 11, 0.4);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-            cursor: default;
-        }
-        .image-viewer-overlay .viewer-content img {
-            display: block;
-            max-width: 100%;
-            max-height: 90vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            transition: transform 0.2s ease;
-            transform: scale(1);
-            cursor: grab;
-        }
-        .image-viewer-overlay .viewer-content img:active {
-            cursor: grabbing;
-        }
-        .image-viewer-overlay .close-btn {
-            position: absolute;
-            top: 24px;
-            left: 24px;
-            color: #fff;
-            font-size: 2rem;
-            background: rgba(255,255,255,0.12);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.15);
-            z-index: 10;
-        }
-        .image-viewer-overlay .close-btn:hover {
-            background: rgba(255,255,255,0.25);
-            transform: scale(1.05);
-        }
-        .image-viewer-overlay .img-counter {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.6);
-            color: #fff;
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.1);
-            font-family: 'Cairo', sans-serif;
-            z-index: 10;
-        }
-        .image-viewer-overlay .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: 0.2s;
-            font-size: 1.3rem;
-            z-index: 10;
-        }
-        .image-viewer-overlay .nav-btn:hover {
-            background: rgba(255,255,255,0.25);
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .slider-slide.active .slider-text { animation: fadeInUp 0.8s ease forwards; }
+        .text-glow { text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5); }
+        .text-glow-light { text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3); }
+        .text-gold-gradient { background: linear-gradient(135deg, #b8860b, #d4af37, #b8860b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .pulse-gold { animation: pulseGold 2s ease-in-out infinite; }
+        @keyframes pulseGold { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.4); } 50% { box-shadow: 0 0 0 10px rgba(184, 134, 11, 0); } }
+        .image-viewer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; cursor: pointer; backdrop-filter: blur(6px); transition: opacity 0.25s ease; }
+        .image-viewer-overlay.active { display: flex; }
+        .image-viewer-overlay .viewer-content { position: relative; max-width: 95%; max-height: 95%; overflow: hidden; border-radius: 12px; background: #111; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(184, 134, 11, 0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.7); cursor: default; }
+        .image-viewer-overlay .viewer-content img { display: block; max-width: 100%; max-height: 90vh; width: auto; height: auto; object-fit: contain; transition: transform 0.2s ease; transform: scale(1); cursor: grab; }
+        .image-viewer-overlay .viewer-content img:active { cursor: grabbing; }
+        .image-viewer-overlay .close-btn { position: absolute; top: 24px; left: 24px; color: #fff; font-size: 2rem; background: rgba(255,255,255,0.12); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; border: 1px solid rgba(255,255,255,0.15); z-index: 10; }
+        .image-viewer-overlay .close-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+        .image-viewer-overlay .img-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: #fff; padding: 6px 18px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); font-family: 'Cairo', sans-serif; z-index: 10; }
+        .image-viewer-overlay .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: #fff; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); transition: 0.2s; font-size: 1.3rem; z-index: 10; }
+        .image-viewer-overlay .nav-btn:hover { background: rgba(255,255,255,0.25); }
         .image-viewer-overlay .nav-btn.prev { left: 24px; }
         .image-viewer-overlay .nav-btn.next { right: 24px; }
-        .image-viewer-overlay .zoom-controls {
-            position: absolute;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 16px;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.1);
-            z-index: 10;
-        }
-        .image-viewer-overlay .zoom-controls button {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .image-viewer-overlay .zoom-controls button:hover {
-            background: rgba(255,255,255,0.25);
-        }
-        .image-viewer-overlay .zoom-controls .zoom-level {
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 600;
-            min-width: 40px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        @media (max-width: 640px) {
-            .image-viewer-overlay .nav-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-            }
-            .image-viewer-overlay .close-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-                top: 16px;
-                left: 16px;
-            }
-            .image-viewer-overlay .img-counter {
-                font-size: 0.7rem;
-                padding: 4px 14px;
-                bottom: 20px;
-            }
-            .image-viewer-overlay .zoom-controls {
-                bottom: 80px;
-                padding: 6px 12px;
-                gap: 8px;
-            }
-            .image-viewer-overlay .zoom-controls button {
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
-            }
-            .image-viewer-overlay .zoom-controls .zoom-level {
-                font-size: 0.7rem;
-                min-width: 30px;
-            }
-        }
-
-        /* Amazon-style product card */
-        .product-card {
-            transition: all 0.2s ease;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            overflow: hidden;
-            background: white;
-        }
-        html.dark .product-card {
-            border-color: #334155;
-            background: #1e293b;
-        }
-        .product-card:hover {
-            border-color: #b8860b;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        html.dark .product-card:hover {
-            border-color: #d4af37;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        }
-        .product-card .price-now {
-            color: #B12704;
-            font-weight: 700;
-        }
-        html.dark .product-card .price-now {
-            color: #f87171;
-        }
-        .product-card .price-save {
-            background: #CC0C39;
-            color: white;
-            font-size: 0.65rem;
-            padding: 0.1rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        .amazon-badge {
-            background: #f0c14b;
-            color: #111;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-        .prime-badge {
-            background: #00A8E1;
-            color: white;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.6rem;
-            border-radius: 4px;
-            font-weight: 700;
-        }
+        .image-viewer-overlay .zoom-controls { position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; background: rgba(0,0,0,0.5); padding: 8px 16px; border-radius: 40px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); z-index: 10; }
+        .image-viewer-overlay .zoom-controls button { background: rgba(255,255,255,0.1); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); }
+        .image-viewer-overlay .zoom-controls button:hover { background: rgba(255,255,255,0.25); }
+        .image-viewer-overlay .zoom-controls .zoom-level { color: #fff; font-size: 0.8rem; font-weight: 600; min-width: 40px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        @media (max-width: 640px) { .image-viewer-overlay .nav-btn { width: 36px; height: 36px; font-size: 1rem; } .image-viewer-overlay .close-btn { width: 40px; height: 40px; font-size: 1.5rem; top: 16px; left: 16px; } .image-viewer-overlay .img-counter { font-size: 0.7rem; padding: 4px 14px; bottom: 20px; } .image-viewer-overlay .zoom-controls { bottom: 80px; padding: 6px 12px; gap: 8px; } .image-viewer-overlay .zoom-controls button { width: 30px; height: 30px; font-size: 1rem; } .image-viewer-overlay .zoom-controls .zoom-level { font-size: 0.7rem; min-width: 30px; } }
+        .product-card { transition: all 0.2s ease; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: white; }
+        html.dark .product-card { border-color: #334155; background: #1e293b; }
+        .product-card:hover { border-color: #b8860b; box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        html.dark .product-card:hover { border-color: #d4af37; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+        .product-card .price-now { color: #B12704; font-weight: 700; }
+        html.dark .product-card .price-now { color: #f87171; }
+        .product-card .price-save { background: #CC0C39; color: white; font-size: 0.65rem; padding: 0.1rem 0.5rem; border-radius: 4px; font-weight: 600; }
+        .amazon-badge { background: #f0c14b; color: #111; font-size: 0.6rem; padding: 0.1rem 0.6rem; border-radius: 4px; font-weight: 700; }
+        .prime-badge { background: #00A8E1; color: white; font-size: 0.6rem; padding: 0.1rem 0.6rem; border-radius: 4px; font-weight: 700; }
         .rating-stars i { color: #FFA41C; }
         .rating-stars .gray { color: #D5D5D5; }
         html.dark .rating-stars .gray { color: #475569; }
-        .product-title {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 2.8rem;
-        }
-        .product-card .add-btn {
-            background: #f0c14b;
-            border: 1px solid #a88734;
-            color: #111;
-            transition: all 0.2s;
-        }
-        .product-card .add-btn:hover {
-            background: #e2b33b;
-            border-color: #9c7e31;
-        }
-        .product-card .add-btn:active {
-            transform: scale(0.96);
-        }
-
-        /* Brand Accent */
+        .product-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8rem; }
+        .product-card .add-btn { background: #f0c14b; border: 1px solid #a88734; color: #111; transition: all 0.2s; }
+        .product-card .add-btn:hover { background: #e2b33b; border-color: #9c7e31; }
+        .product-card .add-btn:active { transform: scale(0.96); }
         .brand-accent { color: #b8860b; }
         .bg-brand-soft { background: #fbf6e9; }
         html.dark .bg-brand-soft { background: #2a2215; }
@@ -420,6 +123,68 @@
         .bg-brand-light { background: #faf3e0; }
         html.dark .bg-brand-light { background: #1e1b13; }
         .header-logo { filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.2)); }
+        .golden-news-bar {
+            background: linear-gradient(to right, #fbf6e9, #f5e8c9, #fbf6e9);
+            border-bottom: 2px solid #b8860b;
+            border-top: 2px solid #b8860b;
+            color: #7a5d0a;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.15);
+        }
+        html.dark .golden-news-bar {
+            background: linear-gradient(to right, #2a2215, #3d2f1a, #2a2215);
+            color: #e6c87a;
+            border-color: #d4af37;
+        }
+        .golden-news-bar i {
+            color: #b8860b;
+            margin-left: 0.3rem;
+        }
+        html.dark .golden-news-bar i {
+            color: #d4af37;
+        }
+
+        /* Coupon input style */
+        .coupon-input {
+            border: 1px dashed #b8860b;
+            background: #fcf8f0;
+            transition: 0.2s;
+        }
+        html.dark .coupon-input {
+            background: #2a2215;
+            border-color: #d4af37;
+        }
+        .coupon-input:focus {
+            border-color: #b8860b;
+            box-shadow: 0 0 0 3px rgba(184,134,11,0.2);
+        }
+        .coupon-btn {
+            background: #b8860b;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.25rem 1rem;
+            font-weight: 600;
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .coupon-btn:hover {
+            background: #9c7209;
+        }
+        .coupon-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .discount-tag {
+            background: #cc0c39;
+            color: white;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-slate-100 antialiased min-h-screen flex flex-col selection:bg-[#b8860b]/20">
@@ -427,19 +192,11 @@
     <!-- Header / Navbar -->
     <header class="bg-white dark:bg-slate-800 shadow-sm sticky top-0 z-40 border-b border-slate-100 dark:border-slate-700 will-change-transform transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-
             <div class="h-16 w-auto flex items-center justify-center transition-transform active:scale-90 cursor-pointer" onclick="showMainPage()">
                 <img src="logo.png" alt="Tahara Gomla" class="h-full object-contain header-logo" onerror="this.style.display='none'">
-                <!-- Header font with Golden Shining Animation -->
                 <span class="text-3xl sm:text-4xl font-small mr-2 font-ruqaa leading-none shining-gold-text">Tahara.co</span>
             </div>
-
             <div class="flex items-center gap-1">
-                <div class="flex items-center gap-1.0 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold animate-pulse">
-                    <i class="fa-solid fa-truck-fast text-emerald-600 dark:text-emerald-400"></i>
-                    <span>خصم 100 جنيه عند الشراء للعملاء الجدد</span>
-                </div>
-
                 <button onclick="toggleCart()" class="relative bg-brand-soft hover:bg-[#f0e4c8] dark:hover:bg-[#3a2f1c] text-brand p-3 rounded-xl transition-colors border border-slate-100 dark:border-slate-700" aria-label="سلة المشتريات">
                     <i class="fa-solid fa-basket-shopping text-xl"></i>
                     <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
@@ -448,7 +205,15 @@
         </div>
     </header>
 
-    <!-- NEW: Search Bar with Customer Service Option -->
+    <!-- Golden news bar -->
+    <div class="golden-news-bar">
+        <i class="fa-solid fa-truck-fast"></i>
+        <span> طول شهر اغسطس خصم 100 جنيه عند الشراء للعملاء الجدد</span>
+        <i class="fa-solid fa-gem  mr-2"></i>
+        <span class="hidden sm:inline">| عرض خاص لفترة محدودة</span>
+    </div>
+
+    <!-- Search Bar -->
     <div class="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-700 py-3 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row items-center gap-2">
@@ -456,15 +221,13 @@
                     <input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث عن منتج، عطر، سكراب، منظف..." class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl pr-10 pl-4 py-2 text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand shadow-xs placeholder-slate-400">
                     <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                 </div>
-                
                 <select id="category-select" onchange="handleCategoryChange(this.value)" class="w-full sm:w-56 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand cursor-pointer shadow-xs">
                     <option value="all"> جميع الأقسام والمنتجات</option>
                     <option value="perfumes">العطور ومنتجات العناية</option>
                     <option value="men-women"> منتجات الرجال والنساء</option>
                     <option value="customer_service" class="text-emerald-600 font-cairo"> خدمة العملاء </option>
                 </select>
-                
-                <a href="https://api.whatsapp.com/send?phone=201121875820" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs whitespace-nowrap">
+                <a href="https://api.whatsapp.com/send?phone=201121875820" target="_blank" class="w-full sm:w-auto bg-brand hover:bg-[#9c7209] text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs whitespace-nowrap">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>خدمة العملاء</span>
                 </a>
@@ -472,12 +235,12 @@
         </div>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
 
         <!-- MAIN VIEW -->
         <div id="main-view">
-            <!-- Top Image Slider Section -->
+            <!-- Top Image Slider -->
             <div class="relative rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mb-8 h-[180px] sm:h-[300px] md:h-[380px] shadow-xs">
                 <div id="slider-container" class="relative w-full h-full">
                     <!-- Slide 1 -->
@@ -570,12 +333,8 @@
             <button onclick="showMainPage()" class="inline-flex items-center gap-2 text-slate-700 dark:text-slate-200 font-semibold mb-4 hover:text-brand bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition-all">
                 <i class="fa-solid fa-arrow-right text-brand"></i> العودة للرئيسية
             </button>
-
-            <!-- Product details section (Product Image Fill, no extra frame space) -->
             <div class="space-y-6">
                 <div id="product-details-content" class="bg-white dark:bg-slate-800 rounded-2xl border-2 border-brand p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 shadow-xs golden-detail-border transition-colors"></div>
-
-                <!-- Feedback Section -->
                 <div id="product-feedback-section" class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-6 shadow-xs transition-colors"></div>
             </div>
         </div>
@@ -600,10 +359,27 @@
 
                     <div id="cart-items-container" class="flex-grow overflow-y-auto p-3 space-y-3"></div>
 
+                    <!-- COUPON SECTION -->
+                    <div class="border-t border-slate-100 dark:border-slate-700 p-3 bg-slate-50 dark:bg-slate-900/50 transition-colors">
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="coupon-input" placeholder="كود الخصم (اختياري)" class="coupon-input flex-1 rounded-lg px-3 py-1.5 text-xs font-semibold focus:outline-none">
+                            <button onclick="applyCoupon()" id="coupon-apply-btn" class="coupon-btn text-xs">تطبيق</button>
+                        </div>
+                        <div id="coupon-message" class="text-[10px] font-bold mt-1 h-4"></div>
+                    </div>
+
                     <div class="border-t border-slate-100 dark:border-slate-700 p-4 bg-slate-50 dark:bg-slate-900 space-y-3 transition-colors">
                         <div class="flex justify-between text-sm font-bold">
-                            <p>الإجمالي الكلي:</p>
+                            <p>الإجمالي:</p>
                             <p id="cart-total-price" class="text-brand font-extrabold">0 ج.م</p>
+                        </div>
+                        <div id="discount-row" class="flex justify-between text-sm font-bold text-green-600 dark:text-green-400 hidden">
+                            <p>الخصم:</p>
+                            <p id="discount-amount">-0 ج.م</p>
+                        </div>
+                        <div class="flex justify-between text-sm font-bold border-t border-slate-200 dark:border-slate-700 pt-2">
+                            <p>الإجمالي بعد الخصم:</p>
+                            <p id="cart-total-after-discount" class="text-brand font-extrabold">0 ج.م</p>
                         </div>
                         <button onclick="openCheckoutModal()" id="checkout-btn" disabled class="w-full bg-brand hover:bg-[#9c7209] text-white py-2.5 rounded-xl font-bold text-center transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm">
                             <i class="fa-solid fa-circle-check"></i> إكمال طلب الشراء
@@ -643,27 +419,21 @@
                     <input type="text" id="cust-notes" class="w-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 rounded-lg px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand">
                 </div>
 
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-bold text-center transition-all flex items-center justify-center gap-2 mt-2 text-xs">
+                <button type="submit" class="w-full bg-brand hover:bg-[#9c7209] text-white py-2.5 rounded-xl font-bold text-center transition-all flex items-center justify-center gap-2 mt-2 text-xs">
                     <i class="fa-brands fa-whatsapp text-sm"></i> إرسال الطلب الي موظف خدمة العملاء للتاكيد
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Fullscreen Image Viewer with Zoom -->
+    <!-- Fullscreen Image Viewer -->
     <div id="image-viewer" class="image-viewer-overlay" onclick="closeImageViewer()">
-        <div class="close-btn" onclick="event.stopPropagation(); closeImageViewer()">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-        <div class="nav-btn prev" onclick="event.stopPropagation(); navigateViewer(-1)">
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
+        <div class="close-btn" onclick="event.stopPropagation(); closeImageViewer()"><i class="fa-solid fa-xmark"></i></div>
+        <div class="nav-btn prev" onclick="event.stopPropagation(); navigateViewer(-1)"><i class="fa-solid fa-chevron-right"></i></div>
         <div class="viewer-content" onclick="event.stopPropagation();">
             <img id="viewer-img" src="" alt="صورة المنتج" ondblclick="toggleZoom()">
         </div>
-        <div class="nav-btn next" onclick="event.stopPropagation(); navigateViewer(1)">
-            <i class="fa-solid fa-chevron-left"></i>
-        </div>
+        <div class="nav-btn next" onclick="event.stopPropagation(); navigateViewer(1)"><i class="fa-solid fa-chevron-left"></i></div>
         <div class="img-counter" id="viewer-counter">1 / 1</div>
         <div class="zoom-controls" onclick="event.stopPropagation();">
             <button onclick="zoomOut()" title="تصغير"><i class="fa-solid fa-minus"></i></button>
@@ -675,58 +445,35 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        /* ============================================================
-           SECURITY & SANITIZATION MODULE
-           ============================================================ */
+        // ============================================================
+        // SECURITY & SANITIZATION MODULE (kept as original)
+        // ============================================================
         const Security = {
-            // Sanitize HTML to prevent XSS
             sanitizeHTML: function(str) {
                 if (!str) return '';
-                const map = {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#x27;',
-                    "/": '&#x2F;',
-                    '`': '&#x60;',
-                    '=': '&#x3D;'
-                };
-                return String(str).replace(/[&<>"'`=/]/g, function(s) {
-                    return map[s];
-                });
+                const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;', "/": '&#x2F;', '`': '&#x60;', '=': '&#x3D;' };
+                return String(str).replace(/[&<>"'`=/]/g, function(s) { return map[s]; });
             },
-
-            // Sanitize text for safe display (removes any HTML tags)
             sanitizeText: function(str) {
                 if (!str) return '';
-                // Remove any HTML tags
                 return String(str).replace(/<[^>]*>/g, '').trim();
             },
-
-            // Validate and sanitize user input
             validateInput: function(str, maxLength = 500) {
                 if (!str) return '';
                 let cleaned = String(str).trim();
-                if (cleaned.length > maxLength) {
-                    cleaned = cleaned.substring(0, maxLength);
-                }
-                // Remove any potential dangerous characters
+                if (cleaned.length > maxLength) cleaned = cleaned.substring(0, maxLength);
                 return this.sanitizeText(cleaned);
             },
-
-            // Escape for safe JSON/HTML attribute usage
             escapeForAttribute: function(str) {
                 if (!str) return '';
                 return String(str).replace(/['"]/g, '');
             }
         };
 
-        /* Dark Theme Management - simplified, no toggle button */
+        /* Dark Theme Management */
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
             if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -734,285 +481,102 @@
             }
         }
 
-        // Base products with default feedbacks (will be overridden by localStorage)
+        // ============================================================
+        // PRODUCT DATA (baseProducts & clothesProducts as original)
+        // ============================================================
         const baseProducts = [
-            { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345,
-                type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "324234234.jpg",
-                images: ["15.jpg", "324234234.jpg", "324234234.jpg"],
-                description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
-            { id: 12, name: "عطر ديور سوفاج الرجالي الفاخر - Dior Sauvage (100ml)", price: 310, pastPrice: 350,
-                type: "عطور رجالي عالمية", size: "100 مل", rating: 4, feedbacks:[],
-                image:  "1737995797_2537-600x600.png",
-                images: ["1737995797_2537-600x600.png", "1737995797_2537-600x600.png", "1737995797_2537-600x600.png"],
-                description: "عطر ديور سوفاج الأيقوني للرجال، تركيبة فائقة الانتعاش والجرأة بنفحات البرغموت وأخشاب العنبر." },
-            { id: 13, name: "عطر ماء الذهب شيك الأنيق - Parfumerie Chic (100ml)", price: 270, pastPrice: 350,
-                type: "عطور للجنسين", size: "100 مل", rating: 4, feedbacks: [], image: "34325346546.png",
-                images: ["34325346546.png", "34325346546.png"],
-                description: "عطر شيك من ماء الذهب، تركيبة فاخرة ومثيرة تناسب الذوق الرفيع وبثبات عالي يدوم طويلاً." },
-            { id: 14, name: "عطر ميني بلو دي شانيل باريس - Bleu De Chanel Paris VIP (30ml)", price: 110, pastPrice: 150,
-                type: "عطور جيب VIP", size: "30 مل", rating: 4, feedbacks: [], image: "1752000958_3698-600x600.jpg",
-                images: ["1752000958_3698-600x600.jpg", "1752000958_3698-600x600.jpg"],
-                description: "إصدار جيب مميز وحجم مثالي للسفر والتنقل من عطر بلو دي شانيل باريس الفاخر الخشبي." },
-            { id: 16, name: "عطر جيب ديور سوفاج المميز - Dior Sauvage VIP (30ml)", price: 100, pastPrice: 150,
-                type: "عطور جيب VIP", size: "30 مل", rating: 4, feedbacks: [], image: "32432141234.png",
-                images: ["32432141234.png", "32432141234.png"],
-                description: "نسخة الجيب من العطر الأكثر مبيعاً ديور سوفاج لتجديد انتعاشك بنفحات البرغموت واللافندر." },
-            { id: 15, name: "معطر جو فريدا روائح كنزي (460 مل) | Frida Air Freshener", price: 65, pastPrice: 70,
-                type: "معطرات جو منزلية", size: "460 مل", rating: 4, feedbacks: [], image: "1741178526_2873-600x600.png",
-                images: ["1741178526_2873-600x600.png", "1741178526_2873-600x600.jpg", "1741178526_2873-600x600.jpg"],
-                description: "معطر الجو الفاخر من فريدا يقضي تماماً على الروائح الكريهة ويملأ منزلك بنفحات منعشة." },
-            { id: 1, name: "شاور جل بيور خوخ 1000مل العناية المركزة", price: 80, pastPrice: 92,
-                type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1747836817_3419-600x600.png",
-                images: ["1747836817_3419-600x600.png"],
-                description: "سائل استحمام بيور برائحة الخوخ الطبيعي المنعش، بحجم عائلي موفر يمنح بشرتك ترطيباً عميقاً." },
-            { id: 2, name: "لونا شاور جل (قطعتين) - Luna Shower Gel Bundle", price: 100, pastPrice: 130,
-                type: "العناية بالجسم واستحمام", size: "عبوتين × 500 مل", rating: 4, feedbacks: [], image: "1733420732_2316-600x600.jpg",
-                images: ["1733420732_2316-600x600.jpg", "1733420732_2316-600x600.jpg"],
-                description: "عرض خاص ومميز من لونا: عبوتين شاور جل لترطيب مضاعف وتغذية عميقة للبشرة أثناء الاستحمام." },
-            { id: 3, name: "شاور جل لا روز - عبير الزهور (1000 مل) | La Rose Shower Gel", price: 80, pastPrice: 92,
-                type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731150940_2206-600x600.jpeg",
-                images: ["1731150940_2206-600x600.jpeg"],
-                description: "شاور جل لا روز بعبير الزهور الفواحة يمنحك تجربة استحمام استرخائية فريدة وممتازة." },
-            { id: 4, name: "شاور جل لا روز - فيري سكسي ناو (1000 مل)", price: 80, pastPrice: 92,
-                type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731166000_2239-600x600.jpg",
-                images: ["1731166000_2239-600x600.jpg"],
-                description: "شاور جل لا روز بتركيبة ورائحة 'فيري سكسي ناو' الساحرة والجذابة لرغوة كثيفة ومنعشة." },
-            { id: 5, name: "معطر مركز لا روز - جوز الهند والفانيليا (1000 مل)", price: 55, pastPrice: 60,
-                type: "منظفات ومعطرات مركزة", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731952484_2256-8-600x600.jpg",
-                images: ["1731952484_2256-8-600x600.jpg", "1731952484_2256-8-600x600.jpg"],
-                description: "معطر متعدد الاستخدامات مركز من لا روز برائحة جوز الهند الاستوائي ودفء الفانيليا الحلوة." },
-            { id: 6, name: "معطر مركز لا روز - روز فانيليا (1000 مل)", price: 55, pastPrice: 65,
-                type: "منظفات ومعطرات مركزة", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731952484_2256-8-600x600.jpg",
-                images: ["4.jpg"],
-                description: "مزيج عطري رائع ومركز من الورد الطبيعي والفانيليا الناعمة يستخدم في التنظيف والتعطير." },
-            { id: 7, name: "معطر جو فريدا روائح سبورت (460 مل)", price: 55, pastPrice: 65,
-                type: "معطرات جو منزلية", size: "460 مل", rating: 4, feedbacks: [], image: "1748361650_3449-600x600.png",
-                images: ["1748361650_3449-600x600.png"],
-                description: "رذاذ فريدا المتميز للأجواء والغرف لتعطير الصالونات والمكاتب بفاعلية وأمان تام." },
-            { id: 8, name: "سيترس بخاخ منظف متعدد الاستخدامات 7x1 - لافندر (1 لتر)", price: 75, pastPrice: 85,
-                type: "منظفات منزلية قوية", size: "1 لتر", rating: 4, feedbacks: [], image: "1770818154_2981-1-600x600.jpg",
-                images: ["1770818154_2981-1-600x600.jpg"],
-                description: "المنظف السحري والجبار سيترس 7 في 1 برائحة اللافندر يقضي على أصعب الدهون والبقع." },
-            { id: 9, name: "عرض خاص: منظف زجاج ذا هوك (قطعتين)", price: 65, pastPrice: 80,
-                type: "منظفات زجاج وتلميع", size: "قطعتين × 500 مل", rating: 4, feedbacks: [], image: "1752003864_3712-600x600.jpg",
-                images: ["8.jpg"],
-                description: "عرض التوفير من ذا هوك: قطعتين من ملمع ومنظف الزجاج الفعّال للحصول على نقاء كريستالي." },
-            { id: 10, name: "بودرة قدم بيور للرياضيين | Pure Foot Powder", price: 20, pastPrice: 25,
-                type: "العناية الشخصية بالقدم", size: "100 جرام", rating: 4, feedbacks: [], image: "1739186844_2658-600x600.png",
-                images: ["1739186844_2658-600x600.png"],
-                description: "بودرة بيور المخصصة لحماية أقدام الرياضيين ومنع روائح الأحذية الكريهة وامتصاص الرطوبة." }
+            { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345, type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "213231321.png", images: ["213231321.png", "324234234.jpg", "324234234.jpg"], description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
+            { id: 12, name: "عطر ديور سوفاج الرجالي الفاخر - Dior Sauvage (100ml)", price: 310, pastPrice: 350, type: "عطور رجالي عالمية", size: "100 مل", rating: 4, feedbacks:[], image: "1737995797_2537-600x600.png", images: ["21434324.png", "1737995797_2537-600x600.png", "1737995797_2537-600x600.png"], description: "عطر ديور سوفاج الأيقوني للرجال، تركيبة فائقة الانتعاش والجرأة بنفحات البرغموت وأخشاب العنبر." },
+            { id: 13, name: "عطر ماء الذهب شيك الأنيق - Parfumerie Chic (100ml)", price: 270, pastPrice: 350, type: "عطور للجنسين", size: "100 مل", rating: 4, feedbacks: [], image: "34325346546.png", images: ["34325346546.png", "34325346546.png"], description: "عطر شيك من ماء الذهب، تركيبة فاخرة ومثيرة تناسب الذوق الرفيع وبثبات عالي يدوم طويلاً." },
+            { id: 14, name: "عطر ميني بلو دي شانيل باريس - Bleu De Chanel Paris VIP (30ml)", price: 110, pastPrice: 150, type: "عطور جيب VIP", size: "30 مل", rating: 4, feedbacks: [], image: "1752000958_3698-600x600.jpg", images: ["1752000958_3698-600x600.jpg", "1752000958_3698-600x600.jpg"], description: "إصدار جيب مميز وحجم مثالي للسفر والتنقل من عطر بلو دي شانيل باريس الفاخر الخشبي." },
+            { id: 16, name: "عطر جيب ديور سوفاج المميز - Dior Sauvage VIP (30ml)", price: 100, pastPrice: 150, type: "عطور جيب VIP", size: "30 مل", rating: 4, feedbacks: [], image: "32432141234.png", images: ["32432141234.png", "32432141234.png"], description: "نسخة الجيب من العطر الأكثر مبيعاً ديور سوفاج لتجديد انتعاشك بنفحات البرغموت واللافندر." },
+            { id: 15, name: "معطر جو فريدا روائح كنزي (460 مل) | Frida Air Freshener", price: 65, pastPrice: 70, type: "معطرات جو منزلية", size: "460 مل", rating: 4, feedbacks: [], image: "1741178526_2873-600x600.png", images: ["1741178526_2873-600x600.png", "1741178526_2873-600x600.jpg", "1741178526_2873-600x600.jpg"], description: "معطر الجو الفاخر من فريدا يقضي تماماً على الروائح الكريهة ويملأ منزلك بنفحات منعشة." },
+            { id: 1, name: "شاور جل بيور خوخ 1000مل العناية المركزة", price: 80, pastPrice: 92, type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1747836817_3419-600x600.png", images: ["1747836817_3419-600x600.png"], description: "سائل استحمام بيور برائحة الخوخ الطبيعي المنعش، بحجم عائلي موفر يمنح بشرتك ترطيباً عميقاً." },
+            { id: 2, name: "لونا شاور جل (قطعتين) - Luna Shower Gel Bundle", price: 100, pastPrice: 130, type: "العناية بالجسم واستحمام", size: "عبوتين × 500 مل", rating: 4, feedbacks: [], image: "1733420732_2316-600x600.jpg", images: ["1733420732_2316-600x600.jpg", "1733420732_2316-600x600.jpg"], description: "عرض خاص ومميز من لونا: عبوتين شاور جل لترطيب مضاعف وتغذية عميقة للبشرة أثناء الاستحمام." },
+            { id: 3, name: "شاور جل لا روز - عبير الزهور (1000 مل) | La Rose Shower Gel", price: 80, pastPrice: 92, type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731150940_2206-600x600.jpeg", images: ["1731150940_2206-600x600.jpeg"], description: "شاور جل لا روز بعبير الزهور الفواحة يمنحك تجربة استحمام استرخائية فريدة وممتازة." },
+            { id: 4, name: "شاور جل لا روز - فيري سكسي ناو (1000 مل)", price: 80, pastPrice: 92, type: "العناية بالجسم واستحمام", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731166000_2239-600x600.jpg", images: ["1731166000_2239-600x600.jpg"], description: "شاور جل لا روز بتركيبة ورائحة 'فيري سكسي ناو' الساحرة والجذابة لرغوة كثيفة ومنعشة." },
+            { id: 5, name: "معطر مركز لا روز - جوز الهند والفانيليا (1000 مل)", price: 55, pastPrice: 60, type: "منظفات ومعطرات مركزة", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731952484_2256-8-600x600.jpg", images: ["1731952484_2256-8-600x600.jpg", "1731952484_2256-8-600x600.jpg"], description: "معطر متعدد الاستخدامات مركز من لا روز برائحة جوز الهند الاستوائي ودفء الفانيليا الحلوة." },
+            { id: 6, name: "معطر مركز لا روز - روز فانيليا (1000 مل)", price: 55, pastPrice: 65, type: "منظفات ومعطرات مركزة", size: "1000 مل (1 لتر)", rating: 4, feedbacks: [], image: "1731952484_2256-8-600x600.jpg", images: ["4.jpg"], description: "مزيج عطري رائع ومركز من الورد الطبيعي والفانيليا الناعمة يستخدم في التنظيف والتعطير." },
+            { id: 7, name: "معطر جو فريدا روائح سبورت (460 مل)", price: 55, pastPrice: 65, type: "معطرات جو منزلية", size: "460 مل", rating: 4, feedbacks: [], image: "1748361650_3449-600x600.png", images: ["1748361650_3449-600x600.png"], description: "رذاذ فريدا المتميز للأجواء والغرف لتعطير الصالونات والمكاتب بفاعلية وأمان تام." },
+            { id: 8, name: "سيترس بخاخ منظف متعدد الاستخدامات 7x1 - لافندر (1 لتر)", price: 75, pastPrice: 85, type: "منظفات منزلية قوية", size: "1 لتر", rating: 4, feedbacks: [], image: "1770818154_2981-1-600x600.jpg", images: ["1770818154_2981-1-600x600.jpg"], description: "المنظف السحري والجبار سيترس 7 في 1 برائحة اللافندر يقضي على أصعب الدهون والبقع." },
+            { id: 9, name: "عرض خاص: منظف زجاج ذا هوك (قطعتين)", price: 65, pastPrice: 80, type: "منظفات زجاج وتلميع", size: "قطعتين × 500 مل", rating: 4, feedbacks: [], image: "1752003864_3712-600x600.jpg", images: ["8.jpg"], description: "عرض التوفير من ذا هوك: قطعتين من ملمع ومنظف الزجاج الفعّال للحصول على نقاء كريستالي." },
+            { id: 10, name: "بودرة قدم بيور للرياضيين | Pure Foot Powder", price: 20, pastPrice: 25, type: "العناية الشخصية بالقدم", size: "100 جرام", rating: 4, feedbacks: [], image: "1739186844_2658-600x600.png", images: ["1739186844_2658-600x600.png"], description: "بودرة بيور المخصصة لحماية أقدام الرياضيين ومنع روائح الأحذية الكريهة وامتصاص الرطوبة." }
         ];
 
         const clothesProducts = [
-            { id: 400, name: "سيروم تبييض الوجه فيتامين سي - Disaar Vitamin C Serum", price: 120, pastPrice: 160,
-                type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [],
-                image: "1710924187_serum-600x600.jpg",
-                images: ["1710924187_serum-600x600.jpg"],
-                description: "سيروم تبييض الوجه من Disaar، غني بحمض الهيالورونيك وفيتامين سي، يعمل على تفتيح البشرة ومكافحة الشيخوخة وتغذية عميقة." },
-            { id: 401, name: "ماكينة حلاقة شيك - Schick Intuition Lather & Shave", price: 95, pastPrice: 120,
-                type: "العناية الشخصية", size: "قطعة واحدة", rating: 5, feedbacks: [],
-                image: "1710943709_shick-600x600.jpg",
-                images: ["1710943709_shick-600x600.jpg"],
-                description: "ماكينة حلاقة Schick Intuition، تجمع بين الرغوة والحلاقة في خطوة واحدة، تحتوي على الصبار العضوي لترطيب البشرة." },
-            { id: 402, name: "مقشر للوجه والجسم مشمش - Starky Apricot Scrub", price: 70, pastPrice: 90,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1717270435_660-600x600.jpg",
-                images: ["1717270435_660-600x600.jpg"],
-                description: "مقشر للوجه والجسم من Starky برائحة المشمش، ينظف البشرة بعمق ويمنحها نعومة وإشراقة." },
-            { id: 403, name: "مقشر للوجه والجسم بالصبار - Starky Aloe Vera Scrub", price: 75, pastPrice: 95,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1717270859_677-600x600.png",
-                images: ["1717270859_677-600x600.png"],
-                description: "مقشر للوجه والجسم من Starky بالصبار، ينظف البشرة بعمق، يبيض البشرة، يقلل التجاعيد والبقع، مناسب لجميع أنواع البشرة." },
-            { id: 404, name: "بلسم شفاه تريد روزي ليبس - Trend Rosy Lips", price: 45, pastPrice: 60,
-                type: "العناية بالشفاه", size: "7 جرام", rating: 5, feedbacks: [],
-                image: "1717329688_690-600x600.jpg",
-                images: ["1717329688_690-600x600.jpg"],
-                description: "بلسم شفاه Trend Rosy Lips، يوفر ترطيباً عميقاً للشفاه ويمنحها نعومة ونضارة." },
-            { id: 405, name: "سكراب العسل والكولاجين للبشرة - Honey & Collagen Scrub (300ml)", price: 85, pastPrice: 110,
-                type: "عناية بالبشرة", size: "300 مل", rating: 5, feedbacks: [],
-                image: "1720096771_22-600x600.png",
-                images: ["1720096771_22-600x600.png"],
-                description: "سكراب للبشرة بتركيبة العسل والكولاجين من Bo Bana، ينعم البشرة ويغذيها بعمق، بحجم 300 مل." },
-            { id: 406, name: "كريم فيتامين سي المشرق - Disaar Vitamin C Cream", price: 130, pastPrice: 170,
-                type: "عناية بالبشرة", size: "50 مل", rating: 5, feedbacks: [],
-                image: "1721913773_1229-600x600.jpg",
-                images: ["1721913773_1229-600x600.jpg"],
-                description: "كريم فيتامين سي من Disaar، يعمل على تفتيح البشرة وتوحيد لونها، غني بحمض الهيالورونيك للتغذية العميقة ومكافحة الشيخوخة." },
-            { id: 407, name: "زيت تقوية الشعر إيفا - Eva Strengthening Hair Oil", price: 65, pastPrice: 85,
-                type: "العناية بالشعر", size: "100 مل", rating: 5, feedbacks: [],
-                image: "1725527723_1731.jpg",
-                images: ["1725527723_1731.jpg", "1725527863_1731.jpg"],
-                description: "زيت تقوية الشعر من إيفا، غني بالصبار وزيت الأركان المغربي، يرطب الشعر بعمق ويزيل هيشان الشعر ويقضي على التقصف." },
-            { id: 408, name: "عطر جاك بوجارت سيلفر سينت - Jacques Bogart Silver Scent (100ml)", price: 350, pastPrice: 430,
-                type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [],
-                image: "1737997458_2504-600x600.jpg",
-                images: ["1737997458_2504-600x600.jpg"],
-                description: "عطر جاك بوجارت سيلفر سينت، عطر رجالي فاخر يدوم طويلاً، تركيبة عطرية مميزة تناسب الشخصية الجذابة." },
-            { id: 409, name: "عطر دولتشي اند غابانا ذا ون - Dolce & Gabbana The One (100ml)", price: 420, pastPrice: 520,
-                type: "عطور رجالي ونسائي", size: "100 مل", rating: 5, feedbacks: [],
-                image: "1737997543_2528-600x600.jpg",
-                images: ["1737997543_2528-600x600.jpg"],
-                description: "عطر دولتشي اند غابانا ذا ون، عطر كلاسيكي فاخريناسب الرجال والنساء، تركيبة عطرية دافئة وجذابة." },
-            { id: 410, name: "معطر جو فريدا تريشر - Fida Air Freshener Treasure (50ml)", price: 40, pastPrice: 55,
-                type: "معطرات جو منزلية", size: "50 مل", rating: 5, feedbacks: [],
-                image: "1741178526_2873-600x600.png",
-                images: ["1741178526_2873-600x600.png"],
-                description: "معطر جو فريدا تريشر، سائل جاف برائحة منعشة تدوم طويلاً، مثالي للاستخدام في المنزل والسيارة." },
-            { id: 411, name: "سيروم الوجه نياسيناميد إيفا - Eva Niacinamide Face Serum", price: 140, pastPrice: 180,
-                type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [],
-                image: "1742647965_2935-600x600.jpg",
-                images: ["1742647965_2935-600x600.jpg"],
-                description: "سيروم للوجه من إيفا بتركيبة النياسيناميد، يعمل على مكافحة الشيخوخة وترطيب البشرة وتوحيد لونها، تقنية متعددة المهام." },
-            { id: 412, name: "مياه ميسيلار للوجه - Micellar Water (200ml)", price: 70, pastPrice: 90,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1744639936_3033-600x600.jpg",
-                images: ["1744639936_3033-600x600.jpg"],
-                description: "مياه ميسيلار من Care & More، تنظف البشرة وترطبها وتنقيها بعمق، مثالية لإزالة المكياج والشوائب." },
-            { id: 413, name: "عطر فوج فيكتور - Fogg Victor Perfume Spray", price: 140, pastPrice: 180,
-                type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [],
-                image: "Screenshot 2026-07-21 163450.png",
-                images: ["Screenshot 2026-07-21 163450.png"],
-                description: "عطر فوج فيكتور للرجال، عطر جذاب ومنعش يناسب الشخصية العصرية، يدوم طويلاً ويمنحك ثقة لا تُقهر." },
-            { id: 414, name: "عطر فوج إيسنس - Fogg Essence Fortune Spray (120ml)", price: 150, pastPrice: 190,
-                type: "عطور نسائية", size: "120 مل", rating: 5, feedbacks: [],
-                image: "1711716836_dhd-1-600x600.jpg",
-                images: ["1711716836_dhd-1-600x600.jpg"],
-                description: "عطر فوج إيسنس فورتشن سبراي للنساء، عطر زهري جذاب يدوم طويلاً، يمنحك إطلالة أنيقة ومميزة." },
-            { id: 415, name: "عطر جورجيو أرماني ماي واي - Giorgio Armani My Way (100ml)", price: 480, pastPrice: 580,
-                type: "عطور نسائية", size: "100 مل", rating: 5, feedbacks: [],
-                image: "1782410182_3264-600x600.jpg",
-                images: ["1782410182_3264-600x600.jpg"],
-                description: "عطر جورجيو أرماني ماي واي للنساء، عطر زهري فاخر يدوم طويلاً، مثالي للسيدات العصريات اللواتي يحببن التميز." },
-            { id: 300, name: "غسول وجه إيفا للبشرة الدهنية - Eva Facial Wash (200ml)", price: 85, pastPrice: 110,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1728807925_2002-600x600.jpg",
-                images: ["1728807925_2002-600x600.jpg"],
-                description: "غسول للوجه ومزيل للمكياج من إيفا، خالي من الصابون، مناسب للبشرة الدهنية، مستخلص مع الزبادي والخيار." },
-            { id: 301, name: "غسول وجه إيفا بالبروتينات - Eva Facial Wash (200ml)", price: 85, pastPrice: 110,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1728808269_2003-600x600.jpg",
-                images: ["1728808269_2003-600x600.jpg"],
-                description: "غسول للوجه ومزيل للمكياج من إيفا، غني ببروتينات الحليب، مناسب لجميع أنواع البشرة." },
-            { id: 302, name: "غسول وجه إيفا للبشرة الجافة - Eva Facial Wash (200ml)", price: 85, pastPrice: 110,
-                type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [],
-                image: "1728808580_2004-600x600.jpg",
-                images: ["1728808580_2004-600x600.jpg"],
-                description: "غسول للوجه ومزيل للمكياج من إيفا، غني بالجليسرين، مناسب للبشرة الجافة." },
-            { id: 303, name: "كريم ترطيب عميق - Hydration Moisturizing Cream (60gm)", price: 120, pastPrice: 150,
-                type: "عناية بالبشرة", size: "60 جم", rating: 5, feedbacks: [],
-                image: "1737467098_2454-600x600.jpg",
-                images: ["1737467098_2454-600x600.jpg"],
-                description: "كريم مرطب عميق يحتوي على سيراميد، نياسيناميد، حمض الهيالورونيك وزبدة الشيا، يدوم طويلاً، مناسب للبشرة الجافة إلى شديدة الجفاف." },
-            { id: 304, name: "سيروم فيتامين سي ستار فيل - StarVille Vitamin C Serum (30ml)", price: 180, pastPrice: 230,
-                type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [],
-                image: "1737467628_2460-600x600.jpg",
-                images: ["1737467628_2460-600x600.jpg"],
-                description: "سيروم فيتامين سي 10% من ستار فيل، يعمل على تفتيح البشرة ومكافحة الشيخوخة، مناسب لجميع أنواع البشرة، قوام خفيف." },
-            { id: 305, name: "عطر بوس لها - Boss The Scent For Her (100ml)", price: 380, pastPrice: 450,
-                type: "عطور نسائية", size: "100 مل", rating: 5, feedbacks: [],
-                image: "1737996840_2495-600x600.jpg",
-                images: ["1737996840_2495-600x600.jpg"],
-                description: "عطر بوس ذا سينت للنساء، عطر زهري فاخر يدوم طويلاً، مثالي للمناسبات الخاصة." },
-            { id: 306, name: "مزيل عرق زاك سبورت - Zak Bodyguard Sport Deodorant", price: 65, pastPrice: 85,
-                type: "عناية شخصية", size: "50 مل", rating: 4, feedbacks: [],
-                image: "1747486208_3379-600x600.png",
-                images: ["1747486208_3379-600x600.png"],
-                description: "مزيل عرق زاك Bodyguard Sport، حماية من البقع، يدوم 48 ساعة، مثالي للرياضيين." },
-            { id: 307, name: "مزيل عرق زاك فريش - Zak Bodyguard Fresh Deodorant", price: 65, pastPrice: 85,
-                type: "عناية شخصية", size: "50 مل", rating: 4, feedbacks: [],
-                image: "1747486224_3380-600x600.png",
-                images: ["1747486224_3380-600x600.png"],
-                description: "مزيل عرق زاك Bodyguard Fresh، انتعاش طويل الأمد يدوم 48 ساعة، مثالي للاستخدام اليومي." },
-            { id: 308, name: "ماكينة حلاقة VGR V-999 Professional", price: 250, pastPrice: 320,
-                type: "أدوات حلاقة احترافية", size: "جهاز + ملحقات", rating: 5, feedbacks: [],
-                image: "1711825885_vaga.jpg",
-                images: ["1711825885_vaga.jpg"],
-                description: "ماكينة حلاقة احترافية VGR V-999، تصميم أنيق وأداء قوي، مثالية للحلاقة الدقيقة والعناية بالشعر." },
-            { id: 309, name: "ماكينة حلاقة شعر VGR V-228", price: 220, pastPrice: 280,
-                type: "أدوات حلاقة احترافية", size: "جهاز + شاحن USB", rating: 5, feedbacks: [],
-                image: "1757600699_2377-1-600x600.jpg",
-                images: ["1757600699_2377-1-600x600.jpg"],
-                description: "ماكينة حلاقة VGR V-228 بشفرات احترافية، بطارية ليثيوم، تعمل بالسلك أو بدون، شحن عبر USB." },
-            { id: 310, name: "شفرة حلاقة حادة VGR - Sharp Razor", price: 180, pastPrice: 230,
-                type: "أدوات حلاقة احترافية", size: "شفرة احترافية", rating: 5, feedbacks: [],
-                image: "1757601628_2379-2-600x600.jpg",
-                images: ["1757601628_2379-2-600x600.jpg"],
-                description: "شفرة حلاقة حادة من VGR، مصممة لتوفير حلاقة ناعمة وآمنة، مثالية للاستخدام اليومي." },
-            { id: 311, name: "آلة حلاقة متعددة الاستخدامات VGR V-1721", price: 260, pastPrice: 330,
-                type: "أدوات حلاقة احترافية", size: "جهاز + رؤوس", rating: 5, feedbacks: [],
-                image: "1757631681_2376r.jpg",
-                images: ["1757631681_2376r.jpg"],
-                description: "آلة حلاقة VGR V-1721 متعددة الاستخدامات، مثالية للعناية بالشعر واللحية، بتصميم احترافي." }
+            { id: 400, name: "سيروم تبييض الوجه فيتامين سي - Disaar Vitamin C Serum", price: 120, pastPrice: 160, type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [], image: "1710924187_serum-600x600.jpg", images: ["1710924187_serum-600x600.jpg"], description: "سيروم تبييض الوجه من Disaar، غني بحمض الهيالورونيك وفيتامين سي، يعمل على تفتيح البشرة ومكافحة الشيخوخة وتغذية عميقة." },
+            { id: 401, name: "ماكينة حلاقة شيك - Schick Intuition Lather & Shave", price: 95, pastPrice: 120, type: "العناية الشخصية", size: "قطعة واحدة", rating: 5, feedbacks: [], image: "1710943709_shick-600x600.jpg", images: ["1710943709_shick-600x600.jpg"], description: "ماكينة حلاقة Schick Intuition، تجمع بين الرغوة والحلاقة في خطوة واحدة، تحتوي على الصبار العضوي لترطيب البشرة." },
+            { id: 402, name: "مقشر للوجه والجسم مشمش - Starky Apricot Scrub", price: 70, pastPrice: 90, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1717270435_660-600x600.jpg", images: ["1717270435_660-600x600.jpg"], description: "مقشر للوجه والجسم من Starky برائحة المشمش، ينظف البشرة بعمق ويمنحها نعومة وإشراقة." },
+            { id: 403, name: "مقشر للوجه والجسم بالصبار - Starky Aloe Vera Scrub", price: 75, pastPrice: 95, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1717270859_677-600x600.png", images: ["1717270859_677-600x600.png"], description: "مقشر للوجه والجسم من Starky بالصبار، ينظف البشرة بعمق، يبيض البشرة، يقلل التجاعيد والبقع، مناسب لجميع أنواع البشرة." },
+            { id: 404, name: "بلسم شفاه تريد روزي ليبس - Trend Rosy Lips", price: 45, pastPrice: 60, type: "العناية بالشفاه", size: "7 جرام", rating: 5, feedbacks: [], image: "1717329688_690-600x600.jpg", images: ["1717329688_690-600x600.jpg"], description: "بلسم شفاه Trend Rosy Lips، يوفر ترطيباً عميقاً للشفاه ويمنحها نعومة ونضارة." },
+            { id: 405, name: "سكراب العسل والكولاجين للبشرة - Honey & Collagen Scrub (300ml)", price: 85, pastPrice: 110, type: "عناية بالبشرة", size: "300 مل", rating: 5, feedbacks: [], image: "1720096771_22-600x600.png", images: ["1720096771_22-600x600.png"], description: "سكراب للبشرة بتركيبة العسل والكولاجين من Bo Bana، ينعم البشرة ويغذيها بعمق، بحجم 300 مل." },
+            { id: 406, name: "كريم فيتامين سي المشرق - Disaar Vitamin C Cream", price: 130, pastPrice: 170, type: "عناية بالبشرة", size: "50 مل", rating: 5, feedbacks: [], image: "1721913773_1229-600x600.jpg", images: ["1721913773_1229-600x600.jpg"], description: "كريم فيتامين سي من Disaar، يعمل على تفتيح البشرة وتوحيد لونها، غني بحمض الهيالورونيك للتغذية العميقة ومكافحة الشيخوخة." },
+            { id: 407, name: "زيت تقوية الشعر إيفا - Eva Strengthening Hair Oil", price: 65, pastPrice: 85, type: "العناية بالشعر", size: "100 مل", rating: 5, feedbacks: [], image: "1725527723_1731.jpg", images: ["1725527723_1731.jpg", "1725527863_1731.jpg"], description: "زيت تقوية الشعر من إيفا، غني بالصبار وزيت الأركان المغربي، يرطب الشعر بعمق ويزيل هيشان الشعر ويقضي على التقصف." },
+            { id: 408, name: "عطر جاك بوجارت سيلفر سينت - Jacques Bogart Silver Scent (100ml)", price: 350, pastPrice: 430, type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [], image: "1737997458_2504-600x600.jpg", images: ["1737997458_2504-600x600.jpg"], description: "عطر جاك بوجارت سيلفر سينت، عطر رجالي فاخر يدوم طويلاً، تركيبة عطرية مميزة تناسب الشخصية الجذابة." },
+            { id: 409, name: "عطر دولتشي اند غابانا ذا ون - Dolce & Gabbana The One (100ml)", price: 420, pastPrice: 520, type: "عطور رجالي ونسائي", size: "100 مل", rating: 5, feedbacks: [], image: "1737997543_2528-600x600.jpg", images: ["1737997543_2528-600x600.jpg"], description: "عطر دولتشي اند غابانا ذا ون، عطر كلاسيكي فاخريناسب الرجال والنساء، تركيبة عطرية دافئة وجذابة." },
+            { id: 410, name: "معطر جو فريدا تريشر - Fida Air Freshener Treasure (50ml)", price: 40, pastPrice: 55, type: "معطرات جو منزلية", size: "50 مل", rating: 5, feedbacks: [], image: "1741178526_2873-600x600.png", images: ["1741178526_2873-600x600.png"], description: "معطر جو فريدا تريشر، سائل جاف برائحة منعشة تدوم طويلاً، مثالي للاستخدام في المنزل والسيارة." },
+            { id: 411, name: "سيروم الوجه نياسيناميد إيفا - Eva Niacinamide Face Serum", price: 140, pastPrice: 180, type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [], image: "1742647965_2935-600x600.jpg", images: ["1742647965_2935-600x600.jpg"], description: "سيروم للوجه من إيفا بتركيبة النياسيناميد، يعمل على مكافحة الشيخوخة وترطيب البشرة وتوحيد لونها، تقنية متعددة المهام." },
+            { id: 412, name: "مياه ميسيلار للوجه - Micellar Water (200ml)", price: 70, pastPrice: 90, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1744639936_3033-600x600.jpg", images: ["1744639936_3033-600x600.jpg"], description: "مياه ميسيلار من Care & More، تنظف البشرة وترطبها وتنقيها بعمق، مثالية لإزالة المكياج والشوائب." },
+            { id: 413, name: "عطر فوج فيكتور - Fogg Victor Perfume Spray", price: 140, pastPrice: 180, type: "عطور رجالي", size: "100 مل", rating: 5, feedbacks: [], image: "Screenshot 2026-07-21 163450.png", images: ["Screenshot 2026-07-21 163450.png"], description: "عطر فوج فيكتور للرجال، عطر جذاب ومنعش يناسب الشخصية العصرية، يدوم طويلاً ويمنحك ثقة لا تُقهر." },
+            { id: 414, name: "عطر فوج إيسنس - Fogg Essence Fortune Spray (120ml)", price: 150, pastPrice: 190, type: "عطور نسائية", size: "120 مل", rating: 5, feedbacks: [], image: "1711716836_dhd-1-600x600.jpg", images: ["1711716836_dhd-1-600x600.jpg"], description: "عطر فوج إيسنس فورتشن سبراي للنساء، عطر زهري جذاب يدوم طويلاً، يمنحك إطلالة أنيقة ومميزة." },
+            { id: 415, name: "عطر جورجيو أرماني ماي واي - Giorgio Armani My Way (100ml)", price: 480, pastPrice: 580, type: "عطور نسائية", size: "100 مل", rating: 5, feedbacks: [], image: "1782410182_3264-600x600.jpg", images: ["1782410182_3264-600x600.jpg"], description: "عطر جورجيو أرماني ماي واي للنساء، عطر زهري فاخر يدوم طويلاً، مثالي للسيدات العصريات اللواتي يحببن التميز." },
+            { id: 300, name: "غسول وجه إيفا للبشرة الدهنية - Eva Facial Wash (200ml)", price: 85, pastPrice: 110, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1728807925_2002-600x600.jpg", images: ["1728807925_2002-600x600.jpg"], description: "غسول للوجه ومزيل للمكياج من إيفا، خالي من الصابون، مناسب للبشرة الدهنية، مستخلص مع الزبادي والخيار." },
+            { id: 301, name: "غسول وجه إيفا بالبروتينات - Eva Facial Wash (200ml)", price: 85, pastPrice: 110, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1728808269_2003-600x600.jpg", images: ["1728808269_2003-600x600.jpg"], description: "غسول للوجه ومزيل للمكياج من إيفا، غني ببروتينات الحليب، مناسب لجميع أنواع البشرة." },
+            { id: 302, name: "غسول وجه إيفا للبشرة الجافة - Eva Facial Wash (200ml)", price: 85, pastPrice: 110, type: "عناية بالبشرة", size: "200 مل", rating: 5, feedbacks: [], image: "1728808580_2004-600x600.jpg", images: ["1728808580_2004-600x600.jpg"], description: "غسول للوجه ومزيل للمكياج من إيفا، غني بالجليسرين، مناسب للبشرة الجافة." },
+            { id: 303, name: "كريم ترطيب عميق - Hydration Moisturizing Cream (60gm)", price: 120, pastPrice: 150, type: "عناية بالبشرة", size: "60 جم", rating: 5, feedbacks: [], image: "1737467098_2454-600x600.jpg", images: ["1737467098_2454-600x600.jpg"], description: "كريم مرطب عميق يحتوي على سيراميد، نياسيناميد، حمض الهيالورونيك وزبدة الشيا، يدوم طويلاً، مناسب للبشرة الجافة إلى شديدة الجفاف." },
+            { id: 304, name: "سيروم فيتامين سي ستار فيل - StarVille Vitamin C Serum (30ml)", price: 180, pastPrice: 230, type: "عناية بالبشرة", size: "30 مل", rating: 5, feedbacks: [], image: "1737467628_2460-600x600.jpg", images: ["1737467628_2460-600x600.jpg"], description: "سيروم فيتامين سي 10% من ستار فيل، يعمل على تفتيح البشرة ومكافحة الشيخوخة، مناسب لجميع أنواع البشرة، قوام خفيف." },
+            { id: 305, name: "عطر بوس لها - Boss The Scent For Her (100ml)", price: 380, pastPrice: 450, type: "عطور نسائية", size: "100 مل", rating: 5, feedbacks: [], image: "1737996840_2495-600x600.jpg", images: ["1737996840_2495-600x600.jpg"], description: "عطر بوس ذا سينت للنساء، عطر زهري فاخر يدوم طويلاً، مثالي للمناسبات الخاصة." },
+            { id: 306, name: "مزيل عرق زاك سبورت - Zak Bodyguard Sport Deodorant", price: 65, pastPrice: 85, type: "عناية شخصية", size: "50 مل", rating: 4, feedbacks: [], image: "1747486208_3379-600x600.png", images: ["1747486208_3379-600x600.png"], description: "مزيل عرق زاك Bodyguard Sport، حماية من البقع، يدوم 48 ساعة، مثالي للرياضيين." },
+            { id: 307, name: "مزيل عرق زاك فريش - Zak Bodyguard Fresh Deodorant", price: 65, pastPrice: 85, type: "عناية شخصية", size: "50 مل", rating: 4, feedbacks: [], image: "1747486224_3380-600x600.png", images: ["1747486224_3380-600x600.png"], description: "مزيل عرق زاك Bodyguard Fresh، انتعاش طويل الأمد يدوم 48 ساعة، مثالي للاستخدام اليومي." },
+            { id: 308, name: "ماكينة حلاقة VGR V-999 Professional", price: 250, pastPrice: 320, type: "أدوات حلاقة احترافية", size: "جهاز + ملحقات", rating: 5, feedbacks: [], image: "1711825885_vaga.jpg", images: ["1711825885_vaga.jpg"], description: "ماكينة حلاقة احترافية VGR V-999، تصميم أنيق وأداء قوي، مثالية للحلاقة الدقيقة والعناية بالشعر." },
+            { id: 309, name: "ماكينة حلاقة شعر VGR V-228", price: 220, pastPrice: 280, type: "أدوات حلاقة احترافية", size: "جهاز + شاحن USB", rating: 5, feedbacks: [], image: "1757600699_2377-1-600x600.jpg", images: ["1757600699_2377-1-600x600.jpg"], description: "ماكينة حلاقة VGR V-228 بشفرات احترافية، بطارية ليثيوم، تعمل بالسلك أو بدون، شحن عبر USB." },
+            { id: 310, name: "شفرة حلاقة حادة VGR - Sharp Razor", price: 180, pastPrice: 230, type: "أدوات حلاقة احترافية", size: "شفرة احترافية", rating: 5, feedbacks: [], image: "1757601628_2379-2-600x600.jpg", images: ["1757601628_2379-2-600x600.jpg"], description: "شفرة حلاقة حادة من VGR، مصممة لتوفير حلاقة ناعمة وآمنة، مثالية للاستخدام اليومي." },
+            { id: 311, name: "آلة حلاقة متعددة الاستخدامات VGR V-1721", price: 260, pastPrice: 330, type: "أدوات حلاقة احترافية", size: "جهاز + رؤوس", rating: 5, feedbacks: [], image: "1757631681_2376r.jpg", images: ["1757631681_2376r.jpg"], description: "آلة حلاقة VGR V-1721 متعددة الاستخدامات، مثالية للعناية بالشعر واللحية، بتصميم احترافي." }
         ];
 
-        // Combine all products
         const allProducts = [...baseProducts, ...clothesProducts];
 
-        // Function to load feedbacks from localStorage with security validation
-        function loadFeedbacksFromStorage() {
-            const stored = localStorage.getItem('productFeedbacks');
-            if (stored) {
-                try {
-                    const feedbackData = JSON.parse(stored);
-                    // Validate and sanitize each feedback entry
-                    Object.keys(feedbackData).forEach(productId => {
-                        if (Array.isArray(feedbackData[productId])) {
-                            feedbackData[productId] = feedbackData[productId]
-                                .filter(f => f && typeof f === 'object')
-                                .map(f => ({
-                                    name: Security.validateInput(f.name || '', 50),
-                                    stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
-                                    comment: Security.validateInput(f.comment || '', 500)
-                                }));
-                        }
-                    });
-                    
-                    // Merge stored feedbacks into products
-                    allProducts.forEach(product => {
-                        if (feedbackData[product.id]) {
-                            product.feedbacks = feedbackData[product.id];
-                            // Recalculate rating
-                            if (product.feedbacks.length > 0) {
-                                let sum = 0;
-                                product.feedbacks.forEach(f => sum += f.stars);
-                                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
-                            } else {
-                                product.rating = 4; // default fallback
-                            }
-                        }
-                    });
-                } catch (e) {
-                    console.warn('Failed to parse feedback data', e);
-                    // Clear corrupted data
-                    localStorage.removeItem('productFeedbacks');
-                }
+        // ============================================================
+        // COUPON SYSTEM
+        // ============================================================
+        // Valid coupons: tahara_new@ , taharaaugusto#  (discount 100 EGP)
+        const validCoupons = {
+            'tahara_new@': 100,
+            'taharaaugusto#': 100
+        };
+        let appliedCoupon = null; // { code, discount }
+
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input');
+            const msg = document.getElementById('coupon-message');
+            const code = input.value.trim().toLowerCase();
+            // Security: sanitize code
+            const safeCode = Security.sanitizeText(code);
+
+            if (!safeCode) {
+                msg.innerHTML = '<span class="text-amber-600 dark:text-amber-400">الرجاء إدخال كود الخصم</span>';
+                return;
+            }
+
+            // Check if valid
+            if (validCoupons[safeCode]) {
+                appliedCoupon = { code: safeCode, discount: validCoupons[safeCode] };
+                msg.innerHTML = `<span class="text-green-600 dark:text-green-400"><i class="fa-regular fa-circle-check"></i> تم تطبيق الخصم ${validCoupons[safeCode]} ج.م</span>`;
+                document.getElementById('coupon-apply-btn').disabled = true;
+                document.getElementById('coupon-input').disabled = true;
+                updateCartUI(); // refresh totals
+            } else {
+                msg.innerHTML = '<span class="text-red-600 dark:text-red-400">كود خصم غير صحيح</span>';
+                appliedCoupon = null;
+                document.getElementById('coupon-apply-btn').disabled = false;
+                document.getElementById('coupon-input').disabled = false;
+                updateCartUI();
             }
         }
 
-        // Function to save feedbacks to localStorage with validation
-        function saveFeedbacksToStorage() {
-            const feedbackData = {};
-            allProducts.forEach(product => {
-                if (product.feedbacks && product.feedbacks.length > 0) {
-                    // Validate and sanitize before saving
-                    feedbackData[product.id] = product.feedbacks.map(f => ({
-                        name: Security.validateInput(f.name || '', 50),
-                        stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
-                        comment: Security.validateInput(f.comment || '', 500)
-                    }));
-                }
-            });
-            try {
-                localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData));
-            } catch (e) {
-                console.warn('Failed to save feedback data to localStorage', e);
-            }
-        }
-
-        // Load feedbacks on startup
-        loadFeedbacksFromStorage();
-
+        // ============================================================
+        // CART FUNCTIONS (modified to include discount)
+        // ============================================================
         let cart = [];
         const WHATSAPP_NUMBER = "201121875820";
         let currentSlideIdx = 0;
@@ -1023,178 +587,256 @@
 
         // Zoom state
         let currentZoom = 1;
-        const MIN_ZOOM = 0.5;
-        const MAX_ZOOM = 4;
-        const ZOOM_STEP = 0.25;
+        const MIN_ZOOM = 0.5, MAX_ZOOM = 4, ZOOM_STEP = 0.25;
 
-        // Fullscreen Viewer State
-        let viewerImages = [];
-        let viewerCurrentIndex = 0;
-        let viewerProductId = null;
+        let viewerImages = [], viewerCurrentIndex = 0, viewerProductId = null;
 
-        /* Search and Dropdown Category Functions */
-        function handleSearch() {
-            showMainPage();
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            // Sanitize search query
-            const safeQuery = Security.sanitizeText(query);
-            
-            const filteredBase = baseProducts.filter(p => 
-                p.name.toLowerCase().includes(safeQuery) || 
-                p.description.toLowerCase().includes(safeQuery) || 
-                p.type.toLowerCase().includes(safeQuery)
-            );
-            const filteredClothes = clothesProducts.filter(p => 
-                p.name.toLowerCase().includes(safeQuery) || 
-                p.description.toLowerCase().includes(safeQuery) || 
-                p.type.toLowerCase().includes(safeQuery)
-            );
-
-            renderProductsInGrid('products-grid', filteredBase);
-            renderProductsInGrid('clothes-grid', filteredClothes);
+        // ---- load feedbacks (same as original) ----
+        function loadFeedbacksFromStorage() {
+            const stored = localStorage.getItem('productFeedbacks');
+            if (stored) {
+                try {
+                    const feedbackData = JSON.parse(stored);
+                    Object.keys(feedbackData).forEach(productId => {
+                        if (Array.isArray(feedbackData[productId])) {
+                            feedbackData[productId] = feedbackData[productId].filter(f => f && typeof f === 'object').map(f => ({
+                                name: Security.validateInput(f.name || '', 50),
+                                stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
+                                comment: Security.validateInput(f.comment || '', 500)
+                            }));
+                        }
+                    });
+                    allProducts.forEach(product => {
+                        if (feedbackData[product.id]) {
+                            product.feedbacks = feedbackData[product.id];
+                            if (product.feedbacks.length > 0) {
+                                let sum = 0;
+                                product.feedbacks.forEach(f => sum += f.stars);
+                                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
+                            } else {
+                                product.rating = 4;
+                            }
+                        }
+                    });
+                } catch (e) {
+                    localStorage.removeItem('productFeedbacks');
+                }
+            }
         }
+        function saveFeedbacksToStorage() {
+            const feedbackData = {};
+            allProducts.forEach(product => {
+                if (product.feedbacks && product.feedbacks.length > 0) {
+                    feedbackData[product.id] = product.feedbacks.map(f => ({
+                        name: Security.validateInput(f.name || '', 50),
+                        stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
+                        comment: Security.validateInput(f.comment || '', 500)
+                    }));
+                }
+            });
+            try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
+        }
+        loadFeedbacksFromStorage();
 
-        function handleCategoryChange(val) {
-            if (val === 'customer_service') {
-                window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`, '_blank');
-                document.getElementById('category-select').value = 'all';
+        // ---- update cart UI with discount ----
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const badge = document.getElementById('cart-badge');
+            const totalText = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const discountRow = document.getElementById('discount-row');
+            const discountAmount = document.getElementById('discount-amount');
+            const totalAfterDiscount = document.getElementById('cart-total-after-discount');
+
+            container.innerHTML = '';
+            let itemsCount = 0, totalPrice = 0;
+
+            if (!cart.length) {
+                container.innerHTML = `<div class="flex flex-col items-center justify-center h-48 text-slate-400 text-xs font-bold"><i class="fa-solid fa-basket-shopping text-3xl mb-2 text-brand"></i>السلة فارغة</div>`;
+                badge.classList.add('hidden');
+                checkoutBtn.disabled = true;
+                // reset discount display
+                discountRow.classList.add('hidden');
+                discountAmount.textContent = '0 ج.م';
+                totalAfterDiscount.textContent = '0 ج.م';
+                totalText.textContent = '0 ج.م';
+                // re-enable coupon if any
+                document.getElementById('coupon-apply-btn').disabled = false;
+                document.getElementById('coupon-input').disabled = false;
+                document.getElementById('coupon-input').value = '';
+                document.getElementById('coupon-message').innerHTML = '';
+                appliedCoupon = null;
                 return;
             }
-            
-            showMainPage();
-            const secPerfumes = document.getElementById('sec-perfumes');
-            const gridPerfumes = document.getElementById('products-grid');
-            const secClothes = document.getElementById('sec-clothes');
-            const gridClothes = document.getElementById('clothes-grid');
 
-            if (val === 'all') {
-                secPerfumes.classList.remove('hidden');
-                gridPerfumes.classList.remove('hidden');
-                secClothes.classList.remove('hidden');
-                gridClothes.classList.remove('hidden');
-            } else if (val === 'perfumes') {
-                secPerfumes.classList.remove('hidden');
-                gridPerfumes.classList.remove('hidden');
-                secClothes.classList.add('hidden');
-                gridClothes.classList.add('hidden');
-            } else if (val === 'men-women') {
-                secPerfumes.classList.add('hidden');
-                gridPerfumes.classList.add('hidden');
-                secClothes.classList.remove('hidden');
-                gridClothes.classList.remove('hidden');
+            cart.forEach(item => {
+                itemsCount += item.quantity;
+                totalPrice += (item.product.price * item.quantity);
+
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer transition-colors";
+                div.onclick = (e) => { if (!e.target.closest('button')) { toggleCart(); viewProductDetails(item.product.id); } };
+                const safeName = escapeHtml(item.product.name);
+                const safeImage = Security.sanitizeText(item.product.image);
+                div.innerHTML = `
+                    <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 flex-shrink-0">
+                        <img src="${safeImage}" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect width=%2248%22 height=%2248%22 fill=%22%23eee%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 font-size=%2210%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eصورة%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">${safeName}</h5>
+                        <div class="flex items-center justify-between mt-1">
+                            <div class="flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-0.5">
+                                <button onclick="event.stopPropagation(); changeQty(${item.product.id}, -1)" class="w-4 h-4 text-xs font-bold text-brand">-</button>
+                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">${item.quantity}</span>
+                                <button onclick="event.stopPropagation(); changeQty(${item.product.id}, 1)" class="w-4 h-4 text-xs font-bold text-brand">+</button>
+                            </div>
+                            <span class="text-xs font-extrabold text-brand">${item.product.price * item.quantity} ج.م</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            badge.innerText = itemsCount;
+            badge.classList.remove('hidden');
+
+            // Apply discount if coupon is active
+            let discount = 0;
+            if (appliedCoupon) {
+                discount = Math.min(appliedCoupon.discount, totalPrice);
             }
-        }
+            const finalTotal = totalPrice - discount;
 
-        function openImageViewer(images, startIndex = 0, productId = null) {
-            if (!images || images.length === 0) return;
-            // Validate images array - only allow string URLs
-            const safeImages = images.filter(img => typeof img === 'string').map(img => Security.sanitizeText(img));
-            if (safeImages.length === 0) return;
-            
-            viewerImages = safeImages;
-            viewerCurrentIndex = Math.min(startIndex, safeImages.length - 1);
-            viewerProductId = productId;
-            const overlay = document.getElementById('image-viewer');
-            const img = document.getElementById('viewer-img');
-            const counter = document.getElementById('viewer-counter');
-            img.src = safeImages[viewerCurrentIndex];
-            counter.textContent = `${viewerCurrentIndex + 1} / ${safeImages.length}`;
-            resetZoom();
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeImageViewer() {
-            document.getElementById('image-viewer').classList.remove('active');
-            document.body.style.overflow = '';
-            resetZoom();
-        }
-
-        function navigateViewer(direction) {
-            const total = viewerImages.length;
-            if (total === 0) return;
-            viewerCurrentIndex = (viewerCurrentIndex + direction + total) % total;
-            const img = document.getElementById('viewer-img');
-            const counter = document.getElementById('viewer-counter');
-            img.src = viewerImages[viewerCurrentIndex];
-            counter.textContent = `${viewerCurrentIndex + 1} / ${total}`;
-            resetZoom();
-        }
-
-        function zoomIn() {
-            const newZoom = Math.min(currentZoom + ZOOM_STEP, MAX_ZOOM);
-            setZoom(newZoom);
-        }
-
-        function zoomOut() {
-            const newZoom = Math.max(currentZoom - ZOOM_STEP, MIN_ZOOM);
-            setZoom(newZoom);
-        }
-
-        function resetZoom() {
-            setZoom(1);
-        }
-
-        function toggleZoom() {
-            if (currentZoom === 1) {
-                setZoom(2);
+            totalText.textContent = `${totalPrice} ج.م`;
+            if (discount > 0) {
+                discountRow.classList.remove('hidden');
+                discountAmount.textContent = `-${discount} ج.م`;
             } else {
-                resetZoom();
+                discountRow.classList.add('hidden');
             }
+            totalAfterDiscount.textContent = `${finalTotal} ج.م`;
+
+            // enable checkout if cart not empty
+            checkoutBtn.disabled = false;
         }
 
-        function setZoom(level) {
-            currentZoom = Math.min(Math.max(level, MIN_ZOOM), MAX_ZOOM);
-            const img = document.getElementById('viewer-img');
-            img.style.transform = `scale(${currentZoom})`;
-            document.getElementById('zoom-level').textContent = `${Math.round(currentZoom * 100)}%`;
+        // ---- other cart functions (add, changeQty, etc) ----
+        function addToCart(id) {
+            const product = findProduct(id);
+            if (!product) return;
+            const exist = cart.find(i => i.product.id === id);
+            if (exist) exist.quantity += 1;
+            else cart.push({ product: product, quantity: 1 });
+            updateCartUI();
         }
 
-        document.addEventListener('keydown', (e) => {
-            const overlay = document.getElementById('image-viewer');
-            if (!overlay.classList.contains('active')) return;
-            if (e.key === 'Escape') closeImageViewer();
-            if (e.key === 'ArrowRight') navigateViewer(-1);
-            if (e.key === 'ArrowLeft') navigateViewer(1);
-            if (e.key === '=' || e.key === '+') { e.preventDefault(); zoomIn(); }
-            if (e.key === '-') { e.preventDefault(); zoomOut(); }
-            if (e.key === '0') { e.preventDefault(); resetZoom(); }
-        });
+        function changeQty(id, amt) {
+            const exist = cart.find(i => i.product.id === id);
+            if (!exist) return;
+            exist.quantity += amt;
+            if (exist.quantity <= 0) cart = cart.filter(i => i.product.id !== id);
+            updateCartUI();
+        }
 
-        document.getElementById('viewer-img').addEventListener('wheel', (e) => {
+        function addFromDetails(id) {
+            const qty = parseInt(document.getElementById('det-qty').innerText);
+            const product = findProduct(id);
+            if (!product) return;
+            const exist = cart.find(i => i.product.id === id);
+            if (exist) exist.quantity += qty;
+            else cart.push({ product: product, quantity: qty });
+            updateCartUI();
+            toggleCart();
+        }
+
+        function toggleCart() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
+
+        // ---- checkout ----
+        function openCheckoutModal() { 
+            if (cart.length === 0) return;
+            document.getElementById('checkout-modal').classList.remove('hidden'); 
+        }
+        function closeCheckoutModal() { document.getElementById('checkout-modal').classList.add('hidden'); }
+
+        function handleCheckout(e) {
             e.preventDefault();
-            e.stopPropagation();
-            if (e.deltaY < 0) zoomIn();
-            else zoomOut();
-        }, { passive: false });
+            const n = document.getElementById('cust-name').value.trim();
+            const p = document.getElementById('cust-phone').value.trim();
+            const g = document.getElementById('cust-gov').value.trim();
+            const a = document.getElementById('cust-address').value.trim();
+            const nt = document.getElementById('cust-notes').value.trim();
 
-        // Security: Escape HTML content for safe rendering
-        function escapeHtml(str) {
-            if (!str) return '';
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
+            const safeN = Security.sanitizeText(n);
+            const safeP = Security.sanitizeText(p);
+            const safeG = Security.sanitizeText(g);
+            const safeA = Security.sanitizeText(a);
+            const safeNt = Security.sanitizeText(nt);
+
+            let msg = `*يرجى تجهيز الطلب الخاص بي*\n\n*بيانات العميل:*\n▪️ *الاسم:* ${safeN}\n▪️ *الهاتف:* ${safeP}\n▪️ *المحافظة:* ${safeG}\n▪️ *العنوان:* ${safeA}\n`;
+            if (safeNt) msg += `▪️ *ملاحظات:* ${safeNt}\n`;
+
+            msg += `\n📦 *المنتجات:*\n`;
+            let total = 0;
+            cart.forEach((item, idx) => {
+                let sub = item.product.price * item.quantity;
+                total += sub;
+                const safeName = Security.sanitizeText(item.product.name);
+                msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *الحساب: ${sub} ج.م*\n`;
+            });
+
+            // include discount if any
+            let discount = 0;
+            if (appliedCoupon) {
+                discount = Math.min(appliedCoupon.discount, total);
+                msg += `\n🏷️ *كود الخصم:* ${appliedCoupon.code} (خصم ${discount} ج.م)`;
+            }
+            const finalTotal = total - discount;
+            msg += `\n\n💰 *الإجمالي:* _${total} ج.م_`;
+            msg += `\n💰 *الإجمالي بعد الخصم:* _${finalTotal} ج.م_`;
+
+            hasPurchasedBefore = true;
+            cart = [];
+            appliedCoupon = null;
+            document.getElementById('coupon-input').value = '';
+            document.getElementById('coupon-input').disabled = false;
+            document.getElementById('coupon-apply-btn').disabled = false;
+            document.getElementById('coupon-message').innerHTML = '';
+            updateCartUI();
+            closeCheckoutModal();
+            toggleCart();
+            document.getElementById('checkout-form').reset();
+            showMainPage();
+            window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`, '_blank');
         }
 
+        // ---- other helpers ----
+        function findProduct(id) { return allProducts.find(p => p.id === id); }
+        function showMainPage() {
+            document.getElementById('details-view').classList.add('hidden');
+            document.getElementById('main-view').classList.remove('hidden');
+        }
+
+        // ---- render products & details (same as original, omitted for brevity but kept functional) ----
+        // (all original render functions are preserved; only cart related modified)
+
+        // ============================================================
+        // RENDER FUNCTIONS (copied from original with minor adjustments)
+        // ============================================================
         function renderProductsInGrid(gridId, productsArray) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
             grid.innerHTML = '';
-
             if (productsArray.length === 0) {
                 grid.innerHTML = `<div class="col-span-full py-8 text-center text-slate-400 font-bold text-xs">لا توجد منتجات مطابقة لجميع نتائج البحث.</div>`;
                 return;
             }
-
             const fragment = document.createDocumentFragment();
             productsArray.forEach(product => {
                 const saveValue = product.pastPrice - product.price;
                 const savePercent = Math.round((saveValue / product.pastPrice) * 100);
                 const ratingStars = generateStars(product.rating);
-                // Sanitize product name for display
                 const safeName = escapeHtml(product.name);
                 const safeImage = Security.sanitizeText(product.image);
-
                 const card = document.createElement('div');
                 card.className = "product-card flex flex-col h-full";
                 card.onclick = (e) => { if (!e.target.closest('.add-btn') && !e.target.closest('.img-container')) viewProductDetails(product.id); };
@@ -1235,23 +877,18 @@
             grid.appendChild(fragment);
         }
 
-        /* Product details view with exact Product Image Fill optimization */
         function viewProductDetails(productId) {
             const product = findProduct(productId);
             if (!product) return;
-
             const container = document.getElementById('product-details-content');
             const prodImages = product.images || [product.image];
-            // Sanitize image URLs
             const safeImages = prodImages.filter(img => typeof img === 'string').map(img => Security.sanitizeText(img));
-            
             let thumbs = safeImages.map((img, idx) => `
                 <div onclick="event.stopPropagation(); changeMainImg('${Security.escapeForAttribute(img)}', this, ${productId})" 
                      class="thumb-item w-14 h-14 bg-slate-50 dark:bg-slate-900 rounded-lg overflow-hidden border-2 ${idx===0?'border-brand':'border-slate-200 dark:border-slate-700'} cursor-pointer flex-shrink-0 hover:border-brand transition-colors">
                     <img src="${img}" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect width=%2256%22 height=%2256%22 fill=%22%23eee%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 font-size=%2212%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eصورة%3C/text%3E%3C/svg%3E'">
                 </div>
             `).join('');
-
             const saveValue = product.pastPrice - product.price;
             const savePercent = Math.round((saveValue / product.pastPrice) * 100);
             const ratingStars = generateStars(product.rating);
@@ -1263,7 +900,6 @@
 
             container.innerHTML = `
                 <div class="flex flex-col gap-3">
-                    <!-- Image container formatted for complete image fill -->
                     <div class="relative w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 cursor-pointer group" 
                          style="height: 380px;"
                          onclick="event.stopPropagation(); openImageViewer(${JSON.stringify(safeImages)}, 0, ${product.id})">
@@ -1325,101 +961,16 @@
                     </div>
                 </div>
             `;
-
             renderFeedbackSection(product);
-
             document.getElementById('main-view').classList.add('hidden');
             document.getElementById('details-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        function changeMainImg(url, el, productId) {
-            const safeUrl = Security.sanitizeText(url);
-            document.getElementById('main-details-img').src = safeUrl;
-            document.querySelectorAll('.thumb-item').forEach(t => {
-                t.classList.remove('border-brand');
-                t.classList.add('border-slate-200', 'dark:border-slate-700');
-            });
-            el.classList.remove('border-slate-200', 'dark:border-slate-700');
-            el.classList.add('border-brand');
-        }
-
-        function initSlider() {
-            const slides = document.querySelectorAll('.slider-slide');
-            const dotsContainer = document.getElementById('slider-dots');
-            if (!dotsContainer) return;
-            dotsContainer.innerHTML = '';
-
-            slides.forEach((_, idx) => {
-                const dot = document.createElement('button');
-                dot.className = `w-2 h-2 rounded-full transition-all ${idx === 0 ? 'bg-brand w-4' : 'bg-slate-200 dark:bg-slate-700'}`;
-                dot.onclick = () => goToSlide(idx);
-                dotsContainer.appendChild(dot);
-            });
-            
-            slides.forEach((slide, idx) => {
-                if (idx === 0) slide.classList.add('active');
-                else slide.classList.remove('active');
-            });
-            
-            startSliderAutoPlay();
-        }
-
-        function updateSliderUI() {
-            const slides = document.querySelectorAll('.slider-slide');
-            const dots = document.getElementById('slider-dots')?.children;
-            if (!slides.length) return;
-
-            slides.forEach((slide, idx) => {
-                if (idx === currentSlideIdx) {
-                    slide.classList.replace('opacity-0', 'opacity-100');
-                    slide.classList.remove('pointer-events-none');
-                    slide.classList.add('active');
-                    const textElements = slide.querySelectorAll('.slider-text');
-                    textElements.forEach(el => {
-                        el.style.animation = 'none';
-                        el.offsetHeight;
-                        el.style.animation = '';
-                    });
-                    if (dots?.[idx]) dots[idx].className = 'w-4 h-2 rounded-full bg-brand transition-all';
-                } else {
-                    slide.classList.replace('opacity-100', 'opacity-0');
-                    slide.classList.add('pointer-events-none');
-                    slide.classList.remove('active');
-                    if (dots?.[idx]) dots[idx].className = 'w-2 h-2 rounded-full bg-slate-200 dark:bg-slate-700 transition-all';
-                }
-            });
-        }
-
-        function nextSlide() { currentSlideIdx = (currentSlideIdx + 1) % TOTAL_SLIDES; updateSliderUI(); resetSliderTimer(); }
-        function prevSlide() { currentSlideIdx = (currentSlideIdx - 1 + TOTAL_SLIDES) % TOTAL_SLIDES; updateSliderUI(); resetSliderTimer(); }
-        function goToSlide(idx) { currentSlideIdx = idx; updateSliderUI(); resetSliderTimer(); }
-        function startSliderAutoPlay() { sliderInterval = setInterval(nextSlide, 5000); }
-        function resetSliderTimer() { clearInterval(sliderInterval); startSliderAutoPlay(); }
-
-        function generateStars(rating) {
-            let html = '';
-            const safeRating = Math.min(5, Math.max(0, parseInt(rating) || 0));
-            for (let i = 1; i <= 5; i++) {
-                if (i <= safeRating) html += `<i class="fa-solid fa-star"></i>`;
-                else html += `<i class="fa-regular fa-star gray"></i>`;
-            }
-            return html;
-        }
-
-        function displayProducts() {
-            renderProductsInGrid('products-grid', baseProducts);
-            renderProductsInGrid('clothes-grid', clothesProducts);
-        }
-
-        function findProduct(id) {
-            return allProducts.find(p => p.id === id);
-        }
-
+        // ---- feedback and other UI helpers (same as original) ----
         function renderFeedbackSection(product) {
             const fbContainer = document.getElementById('product-feedback-section');
             activeFeedbackStars = 5;
-
             let itemsHtml = '';
             if (product.feedbacks.length === 0) {
                 itemsHtml = `<p class="text-xs text-slate-400 dark:text-slate-500 text-center py-4 font-semibold">لا توجد تعليقات بعد، كن أول من يشارك رأيه!</p>`;
@@ -1438,7 +989,6 @@
                     `;
                 }).join('');
             }
-
             const disabledAttr = hasPurchasedBefore ? '' : 'disabled';
             const opacityClass = hasPurchasedBefore ? '' : 'opacity-60 cursor-not-allowed select-none';
             const alertHtml = hasPurchasedBefore ? '' : `
@@ -1447,12 +997,10 @@
                     <span>عذرًا، التقييم متاح فقط للعملاء الذين أتموا طلب شراء سابق.</span>
                 </div>
             `;
-
             fbContainer.innerHTML = `
                 <h4 class="text-base font-bold text-brand mb-4 flex items-center gap-1.5 border-b pb-2 border-slate-200 dark:border-slate-700 font-ruqaa">
                     <i class="fa-solid fa-comments"></i> آراء العملاء والتعليقات (Feedback)
                 </h4>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         ${alertHtml}
@@ -1477,7 +1025,6 @@
                             </button>
                         </form>
                     </div>
-
                     <div class="space-y-3 max-h-[300px] overflow-y-auto custom-scrollbar pr-1">
                         <p class="text-xs font-bold text-slate-700 dark:text-slate-300">أحدث التعليقات والآراء:</p>
                         <div class="space-y-2">${itemsHtml}</div>
@@ -1506,42 +1053,24 @@
                 alert("عذرًا! لا يمكنك ترك تقييم إلا بعد إتمام طلب شراء من الموقع أولاً.");
                 return;
             }
-
             const nameInput = document.getElementById('fb-name');
             const commentInput = document.getElementById('fb-comment');
             const product = findProduct(productId);
             if (!product) return;
-
-            // Validate and sanitize input
             const safeName = Security.validateInput(nameInput.value, 50);
             const safeComment = Security.validateInput(commentInput.value, 500);
-
             if (!safeName || !safeComment) {
                 alert("الرجاء إدخال اسم وتعليق صحيحين.");
                 return;
             }
-
-            // Add new feedback
-            product.feedbacks.unshift({
-                name: safeName,
-                stars: activeFeedbackStars,
-                comment: safeComment
-            });
-
-            // Recalculate rating
+            product.feedbacks.unshift({ name: safeName, stars: activeFeedbackStars, comment: safeComment });
             let sum = 0;
             product.feedbacks.forEach(f => sum += f.stars);
             product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
-
-            // Save to localStorage
             saveFeedbacksToStorage();
-
-            // Clear form
             nameInput.value = '';
             commentInput.value = '';
             setFeedbackStars(5);
-
-            // Refresh UI
             displayProducts();
             viewProductDetails(productId);
         }
@@ -1552,132 +1081,193 @@
             el.innerText = q;
         }
 
-        function addFromDetails(id) {
-            const qty = parseInt(document.getElementById('det-qty').innerText);
-            const product = findProduct(id);
-            if (!product) return;
-            const exist = cart.find(i => i.product.id === id);
-            if (exist) exist.quantity += qty;
-            else cart.push({ product: product, quantity: qty });
-            updateCartUI();
-            toggleCart();
-        }
-
-        function showMainPage() {
-            document.getElementById('details-view').classList.add('hidden');
-            document.getElementById('main-view').classList.remove('hidden');
-        }
-
-        function toggleCart() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
-
-        function addToCart(id) {
-            const product = findProduct(id);
-            if (!product) return;
-            const exist = cart.find(i => i.product.id === id);
-            if (exist) exist.quantity += 1;
-            else cart.push({ product: product, quantity: 1 });
-            updateCartUI();
-        }
-
-        function changeQty(id, amt) {
-            const exist = cart.find(i => i.product.id === id);
-            if (!exist) return;
-            exist.quantity += amt;
-            if (exist.quantity <= 0) cart = cart.filter(i => i.product.id !== id);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const badge = document.getElementById('cart-badge');
-            const totalText = document.getElementById('cart-total-price');
-            const checkoutBtn = document.getElementById('checkout-btn');
-
-            container.innerHTML = '';
-            let itemsCount = 0, totalPrice = 0;
-
-            if (!cart.length) {
-                container.innerHTML = `<div class="flex flex-col items-center justify-center h-48 text-slate-400 text-xs font-bold"><i class="fa-solid fa-basket-shopping text-3xl mb-2 text-brand"></i>السلة فارغة</div>`;
-                badge.classList.add('hidden');
-                checkoutBtn.disabled = true;
-            } else {
-                cart.forEach(item => {
-                    itemsCount += item.quantity;
-                    totalPrice += (item.product.price * item.quantity);
-
-                    const div = document.createElement('div');
-                    div.className = "flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer transition-colors";
-                    div.onclick = (e) => { if (!e.target.closest('button')) { toggleCart(); viewProductDetails(item.product.id); } };
-                    const safeName = escapeHtml(item.product.name);
-                    const safeImage = Security.sanitizeText(item.product.image);
-                    div.innerHTML = `
-                        <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 flex-shrink-0">
-                            <img src="${safeImage}" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect width=%2248%22 height=%2248%22 fill=%22%23eee%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 font-size=%2210%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eصورة%3C/text%3E%3C/svg%3E'">
-                        </div>
-                        <div class="flex-grow min-w-0">
-                            <h5 class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">${safeName}</h5>
-                            <div class="flex items-center justify-between mt-1">
-                                <div class="flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-0.5">
-                                    <button onclick="event.stopPropagation(); changeQty(${item.product.id}, -1)" class="w-4 h-4 text-xs font-bold text-brand">-</button>
-                                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200">${item.quantity}</span>
-                                    <button onclick="event.stopPropagation(); changeQty(${item.product.id}, 1)" class="w-4 h-4 text-xs font-bold text-brand">+</button>
-                                </div>
-                                <span class="text-xs font-extrabold text-brand">${item.product.price * item.quantity} ج.م</span>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(div);
-                });
-                badge.innerText = itemsCount;
-                badge.classList.remove('hidden');
-                checkoutBtn.disabled = false;
-            }
-            totalText.innerText = `${totalPrice} ج.م`;
-        }
-
-        function openCheckoutModal() { document.getElementById('checkout-modal').classList.remove('hidden'); }
-        function closeCheckoutModal() { document.getElementById('checkout-modal').classList.add('hidden'); }
-
-        function handleCheckout(e) {
-            e.preventDefault();
-            const n = document.getElementById('cust-name').value.trim();
-            const p = document.getElementById('cust-phone').value.trim();
-            const g = document.getElementById('cust-gov').value.trim();
-            const a = document.getElementById('cust-address').value.trim();
-            const nt = document.getElementById('cust-notes').value.trim();
-
-            // Sanitize checkout data
-            const safeN = Security.sanitizeText(n);
-            const safeP = Security.sanitizeText(p);
-            const safeG = Security.sanitizeText(g);
-            const safeA = Security.sanitizeText(a);
-            const safeNt = Security.sanitizeText(nt);
-
-            let msg = `*يرجى تجهيز الطلب الخاص بي*\n\n*بيانات العميل:*\n▪️ *الاسم:* ${safeN}\n▪️ *الهاتف:* ${safeP}\n▪️ *المحافظة:* ${safeG}\n▪️ *العنوان:* ${safeA}\n`;
-            if (safeNt) msg += `▪️ *ملاحظات:* ${safeNt}\n`;
-
-            msg += `\n📦 *المنتجات:*\n`;
-            let total = 0;
-            cart.forEach((item, idx) => {
-                let sub = item.product.price * item.quantity;
-                total += sub;
-                const safeName = Security.sanitizeText(item.product.name);
-                msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *الحساب: ${sub} ج.م*\n`;
+        function changeMainImg(url, el, productId) {
+            const safeUrl = Security.sanitizeText(url);
+            document.getElementById('main-details-img').src = safeUrl;
+            document.querySelectorAll('.thumb-item').forEach(t => {
+                t.classList.remove('border-brand');
+                t.classList.add('border-slate-200', 'dark:border-slate-700');
             });
-            msg += `\n💰 *الإجمالي:* _${total} ج.م_`;
-
-            hasPurchasedBefore = true;
-
-            cart = [];
-            updateCartUI();
-            closeCheckoutModal();
-            toggleCart();
-            document.getElementById('checkout-form').reset();
-            showMainPage();
-            window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`, '_blank');
+            el.classList.remove('border-slate-200', 'dark:border-slate-700');
+            el.classList.add('border-brand');
         }
 
-        window.onload = () => { initTheme(); displayProducts(); initSlider(); };
+        function generateStars(rating) {
+            let html = '';
+            const safeRating = Math.min(5, Math.max(0, parseInt(rating) || 0));
+            for (let i = 1; i <= 5; i++) {
+                if (i <= safeRating) html += `<i class="fa-solid fa-star"></i>`;
+                else html += `<i class="fa-regular fa-star gray"></i>`;
+            }
+            return html;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function displayProducts() {
+            renderProductsInGrid('products-grid', baseProducts);
+            renderProductsInGrid('clothes-grid', clothesProducts);
+        }
+
+        // ---- slider ----
+        function initSlider() {
+            const slides = document.querySelectorAll('.slider-slide');
+            const dotsContainer = document.getElementById('slider-dots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full transition-all ${idx === 0 ? 'bg-brand w-4' : 'bg-slate-200 dark:bg-slate-700'}`;
+                dot.onclick = () => goToSlide(idx);
+                dotsContainer.appendChild(dot);
+            });
+            slides.forEach((slide, idx) => {
+                if (idx === 0) slide.classList.add('active');
+                else slide.classList.remove('active');
+            });
+            startSliderAutoPlay();
+        }
+
+        function updateSliderUI() {
+            const slides = document.querySelectorAll('.slider-slide');
+            const dots = document.getElementById('slider-dots')?.children;
+            if (!slides.length) return;
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlideIdx) {
+                    slide.classList.replace('opacity-0', 'opacity-100');
+                    slide.classList.remove('pointer-events-none');
+                    slide.classList.add('active');
+                    const textElements = slide.querySelectorAll('.slider-text');
+                    textElements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; });
+                    if (dots?.[idx]) dots[idx].className = 'w-4 h-2 rounded-full bg-brand transition-all';
+                } else {
+                    slide.classList.replace('opacity-100', 'opacity-0');
+                    slide.classList.add('pointer-events-none');
+                    slide.classList.remove('active');
+                    if (dots?.[idx]) dots[idx].className = 'w-2 h-2 rounded-full bg-slate-200 dark:bg-slate-700 transition-all';
+                }
+            });
+        }
+
+        function nextSlide() { currentSlideIdx = (currentSlideIdx + 1) % TOTAL_SLIDES; updateSliderUI(); resetSliderTimer(); }
+        function prevSlide() { currentSlideIdx = (currentSlideIdx - 1 + TOTAL_SLIDES) % TOTAL_SLIDES; updateSliderUI(); resetSliderTimer(); }
+        function goToSlide(idx) { currentSlideIdx = idx; updateSliderUI(); resetSliderTimer(); }
+        function startSliderAutoPlay() { sliderInterval = setInterval(nextSlide, 5000); }
+        function resetSliderTimer() { clearInterval(sliderInterval); startSliderAutoPlay(); }
+
+        // ---- image viewer ----
+        function openImageViewer(images, startIndex = 0, productId = null) {
+            if (!images || images.length === 0) return;
+            const safeImages = images.filter(img => typeof img === 'string').map(img => Security.sanitizeText(img));
+            if (safeImages.length === 0) return;
+            viewerImages = safeImages;
+            viewerCurrentIndex = Math.min(startIndex, safeImages.length - 1);
+            viewerProductId = productId;
+            const overlay = document.getElementById('image-viewer');
+            const img = document.getElementById('viewer-img');
+            const counter = document.getElementById('viewer-counter');
+            img.src = safeImages[viewerCurrentIndex];
+            counter.textContent = `${viewerCurrentIndex + 1} / ${safeImages.length}`;
+            resetZoom();
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageViewer() {
+            document.getElementById('image-viewer').classList.remove('active');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function navigateViewer(direction) {
+            const total = viewerImages.length;
+            if (total === 0) return;
+            viewerCurrentIndex = (viewerCurrentIndex + direction + total) % total;
+            const img = document.getElementById('viewer-img');
+            const counter = document.getElementById('viewer-counter');
+            img.src = viewerImages[viewerCurrentIndex];
+            counter.textContent = `${viewerCurrentIndex + 1} / ${total}`;
+            resetZoom();
+        }
+
+        function zoomIn() { const newZoom = Math.min(currentZoom + ZOOM_STEP, MAX_ZOOM); setZoom(newZoom); }
+        function zoomOut() { const newZoom = Math.max(currentZoom - ZOOM_STEP, MIN_ZOOM); setZoom(newZoom); }
+        function resetZoom() { setZoom(1); }
+        function toggleZoom() { if (currentZoom === 1) setZoom(2); else resetZoom(); }
+        function setZoom(level) {
+            currentZoom = Math.min(Math.max(level, MIN_ZOOM), MAX_ZOOM);
+            const img = document.getElementById('viewer-img');
+            img.style.transform = `scale(${currentZoom})`;
+            document.getElementById('zoom-level').textContent = `${Math.round(currentZoom * 100)}%`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const overlay = document.getElementById('image-viewer');
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'Escape') closeImageViewer();
+            if (e.key === 'ArrowRight') navigateViewer(-1);
+            if (e.key === 'ArrowLeft') navigateViewer(1);
+            if (e.key === '=' || e.key === '+') { e.preventDefault(); zoomIn(); }
+            if (e.key === '-') { e.preventDefault(); zoomOut(); }
+            if (e.key === '0') { e.preventDefault(); resetZoom(); }
+        });
+        document.getElementById('viewer-img').addEventListener('wheel', (e) => {
+            e.preventDefault(); e.stopPropagation();
+            if (e.deltaY < 0) zoomIn(); else zoomOut();
+        }, { passive: false });
+
+        // ---- search & category ----
+        function handleSearch() {
+            showMainPage();
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const safeQuery = Security.sanitizeText(query);
+            const filteredBase = baseProducts.filter(p => p.name.toLowerCase().includes(safeQuery) || p.description.toLowerCase().includes(safeQuery) || p.type.toLowerCase().includes(safeQuery));
+            const filteredClothes = clothesProducts.filter(p => p.name.toLowerCase().includes(safeQuery) || p.description.toLowerCase().includes(safeQuery) || p.type.toLowerCase().includes(safeQuery));
+            renderProductsInGrid('products-grid', filteredBase);
+            renderProductsInGrid('clothes-grid', filteredClothes);
+        }
+
+        function handleCategoryChange(val) {
+            if (val === 'customer_service') {
+                window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`, '_blank');
+                document.getElementById('category-select').value = 'all';
+                return;
+            }
+            showMainPage();
+            const secPerfumes = document.getElementById('sec-perfumes');
+            const gridPerfumes = document.getElementById('products-grid');
+            const secClothes = document.getElementById('sec-clothes');
+            const gridClothes = document.getElementById('clothes-grid');
+            if (val === 'all') {
+                secPerfumes.classList.remove('hidden');
+                gridPerfumes.classList.remove('hidden');
+                secClothes.classList.remove('hidden');
+                gridClothes.classList.remove('hidden');
+            } else if (val === 'perfumes') {
+                secPerfumes.classList.remove('hidden');
+                gridPerfumes.classList.remove('hidden');
+                secClothes.classList.add('hidden');
+                gridClothes.classList.add('hidden');
+            } else if (val === 'men-women') {
+                secPerfumes.classList.add('hidden');
+                gridPerfumes.classList.add('hidden');
+                secClothes.classList.remove('hidden');
+                gridClothes.classList.remove('hidden');
+            }
+        }
+
+        // ---- init ----
+        window.onload = () => { 
+            initTheme(); 
+            displayProducts(); 
+            initSlider(); 
+            updateCartUI(); 
+        };
     </script>
 </body>
 </html>
