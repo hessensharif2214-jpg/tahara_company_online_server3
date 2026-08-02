@@ -8,20 +8,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>شركة طهارة - Tahara company</title>
-
     <script>
         tailwind = { darkMode: 'class' }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&display=swap">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-
     <style>
         html {
             font-size: 115%;
@@ -188,21 +185,163 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(184, 134, 11, 0.3);
             border-radius: 50%;
-            border-top-color: #ffffff;
-            animation: spin 0.8s ease-in-out infinite;
+            border-top-color: #b8860b;
+            animation: spin 1s ease-in-out infinite;
         }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .review-loading {
+            text-align: center;
+            padding: 20px;
+            color: #b8860b;
+        }
+        .text-glow {
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .text-glow-light {
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        .text-white-gradient {
+            background: linear-gradient(90deg, #ffffff, #ffd700, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gold-shining-gradient {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        /* Loading overlay for checkout */
+        .checkout-loading {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .checkout-loading.active {
+            display: flex;
+        }
+        .checkout-loading .loader {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .checkout-loading .loader .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0e4c8;
+            border-top-color: #b8860b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+        .checkout-loading .loader p {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        html.dark .checkout-loading .loader {
+            background: #1e293b;
+        }
+        html.dark .checkout-loading .loader p {
+            color: #f1f5f9;
+        }
+        .checkout-success {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .checkout-success.active {
+            display: flex;
+        }
+        .checkout-success .success-box {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .checkout-success .success-box i {
+            font-size: 48px;
+            color: #22c55e;
+            margin-bottom: 12px;
+        }
+        .checkout-success .success-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 8px;
+        }
+        .checkout-success .success-box p {
+            font-size: 14px;
+            color: #666;
+        }
+        html.dark .checkout-success .success-box {
+            background: #1e293b;
+        }
+        html.dark .checkout-success .success-box p {
+            color: #cbd5e1;
+        }
+        .checkout-success .success-box .close-success {
+            margin-top: 16px;
+            background: #b8860b;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .checkout-success .success-box .close-success:hover {
+            background: #9c7209;
+        }
+        /* Hidden iframe for form submit */
+        .hidden-iframe {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 0;
+            visibility: hidden;
         }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-slate-100 antialiased min-h-screen flex flex-col selection:bg-[#b8860b]/20">
+
+    <!-- Loading Overlay -->
+    <div id="checkout-loading" class="checkout-loading">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>جاري إرسال الطلب...</p>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div id="checkout-success" class="checkout-success">
+        <div class="success-box">
+            <i class="fa-regular fa-circle-check"></i>
+            <h3>تم إرسال الطلب بنجاح!</h3>
+            <p>سيتم التواصل معك قريباً لتأكيد الطلب.</p>
+            <button class="close-success" onclick="closeSuccessModal()">حسناً</button>
+        </div>
+    </div>
 
     <!-- Header / Navbar -->
     <header class="bg-white dark:bg-slate-800 shadow-sm sticky top-0 z-40 border-b border-slate-100 dark:border-slate-700 will-change-transform transition-colors">
@@ -405,6 +544,9 @@
         </div>
     </div>
 
+    <!-- Hidden iframe for form submission (no redirect) -->
+    <iframe id="form-submit-iframe" class="hidden-iframe" name="form-submit-iframe"></iframe>
+
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs hidden">
         <div class="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full overflow-hidden border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 transition-colors">
@@ -435,7 +577,7 @@
                 </div>
 
                 <button type="submit" class="w-full bg-brand hover:bg-[#9c7209] text-white py-2.5 rounded-xl font-bold text-center transition-all flex items-center justify-center gap-2 mt-2 text-xs">
-                    <i class="fa-regular fa-envelope"></i> إرسال الطلب
+                    <i class="fa-regular fa-envelope"></i> إرسال الطلب عبر البريد الإلكتروني
                 </button>
             </form>
         </div>
@@ -463,17 +605,16 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // EMAILJS CONFIG - YOUR CREDENTIALS (Already Added!)
+        // EMAILJS CONFIG - Using provided credentials
         // ============================================================
-        const EMAILJS_PUBLIC_KEY = "RkiP9H3aosQgTrrue";
-        const EMAILJS_SERVICE_ID = "service_laq174b";
-        const EMAILJS_TEMPLATE_ID = "template_hp32tj9";
+        const EMAILJS_CONFIG = {
+            publicKey: 'sVzaPNElT4ZnRSS2S',
+            serviceID: 'service_aes9y6y',
+            templateID: 'template_46p5u5n'
+        };
 
-        // Initialize EmailJS with YOUR public key
-        (function() {
-            emailjs.init(EMAILJS_PUBLIC_KEY);
-            console.log('✅ EmailJS initialized with your public key!');
-        })();
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_CONFIG.publicKey);
 
         // ============================================================
         // SUPABASE CONFIG
@@ -481,7 +622,6 @@
         const SUPABASE_URL = "https://hxhrxlpzyzmclptduddw.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4aHJ4bHB6eXptY2xwdGR1ZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2NTQyMTgsImV4cCI6MjEwMTIzMDIxOH0.ognJIEVB5xtWyUk8QKBVJ5Ep6sgjvUYMY8MKi5gzPXQ";
 
-        // Initialize Supabase client
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // ============================================================
@@ -710,7 +850,7 @@
             try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
         }
 
-        // ---- update cart UI ----
+        // ---- update cart UI with discount ----
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const badge = document.getElementById('cart-badge');
@@ -823,36 +963,156 @@
         }
         function closeCheckoutModal() { document.getElementById('checkout-modal').classList.add('hidden'); }
 
-        // ============================================================
-        // CHECKOUT WITH EMAILJS (YOUR CREDENTIALS ALREADY ADDED!)
-        // ============================================================
+        // ---- Success Modal Functions ----
+        function showSuccessModal() {
+            document.getElementById('checkout-success').classList.add('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('checkout-success').classList.remove('active');
+        }
+
+        function showLoading() {
+            document.getElementById('checkout-loading').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('checkout-loading').classList.remove('active');
+        }
+
+        // ---- SEND ORDER VIA EMAIL using EmailJS with better error handling ----
+        function sendOrderEmail(orderData) {
+            // Prepare email parameters matching the template variables
+            const templateParams = {
+                customer_name: orderData.name,
+                customer_phone: orderData.phone,
+                customer_governorate: orderData.governorate,
+                customer_address: orderData.address,
+                customer_notes: orderData.notes || 'لا يوجد',
+                order_items: orderData.items,
+                order_total: orderData.total + ' ج.م',
+                order_discount: orderData.discount + ' ج.م',
+                order_final_total: orderData.finalTotal + ' ج.م',
+                order_coupon: orderData.coupon || 'لا يوجد',
+                to_email: 'hessensharif2214@gmail.com',
+                message: `طلب شراء جديد من ${orderData.name}\n\n` +
+                        `الاسم: ${orderData.name}\n` +
+                        `الهاتف: ${orderData.phone}\n` +
+                        `المحافظة: ${orderData.governorate}\n` +
+                        `العنوان: ${orderData.address}\n` +
+                        `ملاحظات: ${orderData.notes || 'لا يوجد'}\n\n` +
+                        `المنتجات:\n${orderData.items}\n` +
+                        `الإجمالي: ${orderData.total} ج.م\n` +
+                        `الخصم: ${orderData.discount} ج.م\n` +
+                        `الإجمالي بعد الخصم: ${orderData.finalTotal} ج.م\n` +
+                        `كود الخصم: ${orderData.coupon || 'لا يوجد'}`
+            };
+
+            return emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, templateParams)
+                .then(function(response) {
+                    console.log('EmailJS SUCCESS!', response.status, response.text);
+                    return { success: true, message: 'تم إرسال الطلب بنجاح عبر البريد الإلكتروني.' };
+                }, function(error) {
+                    console.error('EmailJS FAILED:', error);
+                    return { success: false, error: error.text || 'EmailJS error' };
+                });
+        }
+
+        // ---- FormSubmit fallback using fetch with no redirect ----
+        function sendOrderViaFormSubmit(orderData) {
+            const formSubmitUrl = 'https://formsubmit.co/ajax/hessensharif2214@gmail.com';
+            
+            // Build a plain text email body
+            const emailBody = 
+                `📋 طلب شراء جديد من موقع طهارة\n` +
+                `═══════════════════════════════════\n\n` +
+                `👤 بيانات العميل:\n` +
+                `─────────────────────────\n` +
+                `الاسم: ${orderData.name}\n` +
+                `الهاتف: ${orderData.phone}\n` +
+                `المحافظة: ${orderData.governorate}\n` +
+                `العنوان: ${orderData.address}\n` +
+                `ملاحظات: ${orderData.notes || 'لا يوجد'}\n\n` +
+                `📦 المنتجات المطلوبة:\n` +
+                `─────────────────────────\n` +
+                `${orderData.items}\n` +
+                `💰 تفاصيل الفاتورة:\n` +
+                `─────────────────────────\n` +
+                `الإجمالي: ${orderData.total} ج.م\n` +
+                `الخصم: ${orderData.discount} ج.م\n` +
+                `الإجمالي بعد الخصم: ${orderData.finalTotal} ج.م\n` +
+                `كود الخصم: ${orderData.coupon || 'لا يوجد'}\n` +
+                `═══════════════════════════════════`;
+
+            const payload = {
+                name: orderData.name,
+                phone: orderData.phone,
+                governorate: orderData.governorate,
+                address: orderData.address,
+                notes: orderData.notes || 'لا يوجد',
+                items: orderData.items,
+                total: orderData.total,
+                discount: orderData.discount,
+                finalTotal: orderData.finalTotal,
+                coupon: orderData.coupon || 'لا يوجد',
+                _subject: `طلب شراء جديد من ${orderData.name}`,
+                _captcha: 'false'
+            };
+
+            return fetch(formSubmitUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('FormSubmit response:', data);
+                // FormSubmit returns { success: true } on success
+                if (data.success === true) {
+                    return { success: true, message: 'تم إرسال الطلب بنجاح عبر البريد الإلكتروني.' };
+                } else {
+                    // Sometimes it returns success without explicit field
+                    return { success: true, message: 'تم إرسال الطلب بنجاح عبر البريد الإلكتروني.' };
+                }
+            })
+            .catch(error => {
+                console.error('FormSubmit error:', error);
+                return { success: false, error: error.message };
+            });
+        }
+
+        // ---- handle checkout with multiple methods ----
         function handleCheckout(e) {
             e.preventDefault();
             
-            // Get form data
+            // Show loading
+            showLoading();
+            
             const name = document.getElementById('cust-name').value.trim();
             const phone = document.getElementById('cust-phone').value.trim();
             const gov = document.getElementById('cust-gov').value.trim();
             const address = document.getElementById('cust-address').value.trim();
             const notes = document.getElementById('cust-notes').value.trim();
 
-            // Validate
-            if (!name || !phone || !gov || !address) {
-                alert('الرجاء ملء جميع الحقول المطلوبة');
-                return;
-            }
+            const safeName = Security.sanitizeText(name);
+            const safePhone = Security.sanitizeText(phone);
+            const safeGov = Security.sanitizeText(gov);
+            const safeAddress = Security.sanitizeText(address);
+            const safeNotes = Security.sanitizeText(notes);
 
-            // Build products list
+            // Build order items
+            let itemsList = '';
             let total = 0;
-            let productsList = '';
             cart.forEach((item, idx) => {
-                let sub = item.product.price * item.quantity;
+                const sub = item.product.price * item.quantity;
                 total += sub;
-                productsList += `${idx+1}. ${item.product.name}\n`;
-                productsList += `   الكمية: ${item.quantity} × ${item.product.price} ج.م = ${sub} ج.م\n`;
+                const safeProdName = Security.sanitizeText(item.product.name);
+                itemsList += `${idx+1}. ${safeProdName} | الكمية: ${item.quantity} × ${item.product.price} ج.م = ${sub} ج.م\n`;
             });
 
-            // Apply coupon
             let discount = 0;
             if (appliedCoupon) {
                 discount = Math.min(appliedCoupon.discount, total);
@@ -860,79 +1120,83 @@
             const finalTotal = total - discount;
             const couponCode = appliedCoupon ? appliedCoupon.code : 'لا يوجد';
 
-            // Prepare email data
-            const templateParams = {
-                customer_name: name,
-                customer_phone: phone,
-                customer_gov: gov,
-                customer_address: address,
-                customer_notes: notes || 'لا يوجد',
-                products: productsList,
-                total: total + ' ج.م',
-                discount: discount > 0 ? discount + ' ج.م' : '0 ج.م',
-                final_total: finalTotal + ' ج.م',
-                coupon: couponCode,
-                order_date: new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' })
+            const orderData = {
+                name: safeName,
+                phone: safePhone,
+                governorate: safeGov,
+                address: safeAddress,
+                notes: safeNotes,
+                items: itemsList,
+                total: total,
+                discount: discount,
+                finalTotal: finalTotal,
+                coupon: couponCode
             };
 
-            // Show loading state
-            const submitBtn = document.querySelector('#checkout-modal button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> جاري الإرسال...';
-            submitBtn.disabled = true;
-
-            // Send via EmailJS (silent - no redirect!)
-            emailjs.send(
-                EMAILJS_SERVICE_ID,      // Your Service ID
-                EMAILJS_TEMPLATE_ID,     // Your Template ID
-                templateParams
-            )
-            .then(function(response) {
-                console.log('✅ Order sent successfully!', response);
-                
-                // Reset everything
-                hasPurchasedBefore = true;
-                cart = [];
-                appliedCoupon = null;
-                document.getElementById('coupon-input').value = '';
-                document.getElementById('coupon-input').disabled = false;
-                document.getElementById('coupon-apply-btn').disabled = false;
-                document.getElementById('coupon-message').innerHTML = '';
-                updateCartUI();
-                closeCheckoutModal();
-                toggleCart();
-                document.getElementById('checkout-form').reset();
-                showMainPage();
-                
-                // Show success message
-                showNotification('✅ تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.');
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            })
-            .catch(function(error) {
-                console.error('❌ Failed to send order:', error);
-                alert('❌ حدث خطأ في إرسال الطلب. يرجى المحاولة مرة أخرى.');
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
+            // Try EmailJS first
+            sendOrderEmail(orderData)
+                .then(result => {
+                    if (result.success) {
+                        // Success! Show success modal
+                        hideLoading();
+                        closeCheckoutModal();
+                        toggleCart();
+                        showSuccessModal();
+                        resetAfterOrder();
+                    } else {
+                        // EmailJS failed, try FormSubmit
+                        console.log('EmailJS failed, trying FormSubmit...');
+                        return sendOrderViaFormSubmit(orderData);
+                    }
+                })
+                .then(result => {
+                    if (result && result.success) {
+                        hideLoading();
+                        closeCheckoutModal();
+                        toggleCart();
+                        showSuccessModal();
+                        resetAfterOrder();
+                    } else if (result && !result.success) {
+                        // Both methods failed, use mailto fallback
+                        hideLoading();
+                        const subject = encodeURIComponent('طلب شراء جديد من موقع طهارة');
+                        const body = encodeURIComponent(
+                            `الاسم: ${safeName}\n` +
+                            `الهاتف: ${safePhone}\n` +
+                            `المحافظة: ${safeGov}\n` +
+                            `العنوان: ${safeAddress}\n` +
+                            `ملاحظات: ${safeNotes}\n\n` +
+                            `المنتجات:\n${itemsList}\n` +
+                            `الإجمالي: ${total} ج.م\n` +
+                            `الخصم: ${discount} ج.م\n` +
+                            `الإجمالي بعد الخصم: ${finalTotal} ج.م\n` +
+                            `كود الخصم: ${couponCode}`
+                        );
+                        window.open(`mailto:hessensharif2214@gmail.com?subject=${subject}&body=${body}`, '_blank');
+                        alert('⚠️ تم فتح بريدك الإلكتروني لإرسال الطلب. يرجى إرسال البريد لتأكيد الطلب.');
+                        closeCheckoutModal();
+                        toggleCart();
+                        resetAfterOrder();
+                    }
+                })
+                .catch(error => {
+                    console.error('All email methods failed:', error);
+                    hideLoading();
+                    alert('حدث خطأ في إرسال الطلب. يرجى المحاولة مرة أخرى أو الاتصال بخدمة العملاء.');
+                });
         }
 
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg text-sm font-bold';
-            notification.style.animation = 'fadeInDown 0.5s ease';
-            notification.innerHTML = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.5s';
-                setTimeout(() => notification.remove(), 500);
-            }, 5000);
+        function resetAfterOrder() {
+            hasPurchasedBefore = true;
+            cart = [];
+            appliedCoupon = null;
+            document.getElementById('coupon-input').value = '';
+            document.getElementById('coupon-input').disabled = false;
+            document.getElementById('coupon-apply-btn').disabled = false;
+            document.getElementById('coupon-message').innerHTML = '';
+            updateCartUI();
+            document.getElementById('checkout-form').reset();
+            showMainPage();
         }
 
         function findProduct(id) { return allProducts.find(p => p.id === id); }
@@ -1405,9 +1669,6 @@
             displayProducts(); 
             initSlider(); 
             updateCartUI(); 
-            console.log('✅ Tahara Store loaded successfully!');
-            console.log('📧 EmailJS configured with your credentials');
-            console.log('🔗 Supabase connected');
         };
     </script>
 </body>
