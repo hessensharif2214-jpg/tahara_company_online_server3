@@ -13,6 +13,9 @@
         tailwind = { darkMode: 'class' }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +24,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
     <style>
-        /* your existing styles ... (kept as is) */
         html {
             font-size: 115%;
             -webkit-tap-highlight-color: transparent;
@@ -146,8 +148,6 @@
         html.dark .golden-news-bar i {
             color: #d4af37;
         }
-
-        /* Coupon input style */
         .coupon-input {
             border: 1px dashed #b8860b;
             background: #fcf8f0;
@@ -185,6 +185,24 @@
             border-radius: 20px;
             font-weight: 600;
         }
+        /* Loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(184, 134, 11, 0.3);
+            border-radius: 50%;
+            border-top-color: #b8860b;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .review-loading {
+            text-align: center;
+            padding: 20px;
+            color: #b8860b;
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-slate-900 text-black dark:text-slate-100 antialiased min-h-screen flex flex-col selection:bg-[#b8860b]/20">
@@ -208,7 +226,7 @@
     <!-- Golden news bar -->
     <div class="golden-news-bar">
         <i class="fa-solid fa-truck-fast"></i>
-        <span>   عند استخدام كوبون (tahara_new@)طول شهر اغسطس خصم 100 جنيه عند الشراء من العطور للعملاء الجدد</span>
+        <span> طول شهر اغسطس خصم 100 جنيه عند شراء العطور للعملاء الجدد</span>
         <i class="fa-solid fa-gem  mr-2"></i>
         <span class="hidden sm:inline">| عرض خاص لفترة محدودة</span>
     </div>
@@ -443,10 +461,21 @@
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT - Complete Application Logic -->
+    <!-- ============================================================ -->
     <script>
         // ============================================================
-        // SECURITY & SANITIZATION MODULE (kept as original)
+        // SUPABASE CONFIG - REPLACE WITH YOUR ACTUAL CREDENTIALS
+        // ============================================================
+        const SUPABASE_URL = "https://hxhrxlpzyzmclptduddw.supabase.co"; // Replace with your Project URL
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4aHJ4bHB6eXptY2xwdGR1ZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2NTQyMTgsImV4cCI6MjEwMTIzMDIxOH0.ognJIEVB5xtWyUk8QKBVJ5Ep6sgjvUYMY8MKi5gzPXQ"; // Replace with your anon public key
+
+        // Initialize Supabase client
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ============================================================
+        // SECURITY & SANITIZATION MODULE
         // ============================================================
         const Security = {
             sanitizeHTML: function(str) {
@@ -482,10 +511,10 @@
         }
 
         // ============================================================
-        // PRODUCT DATA (baseProducts & clothesProducts as original)
+        // PRODUCT DATA
         // ============================================================
         const baseProducts = [
-            { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345, type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "213231321.png", images: ["23423545345.jpg", "324234234.jpg", "324234234.jpg"], description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
+            { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345, type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "213231321.png", images: ["213231321.png", "324234234.png", "324234234.jpg"], description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
             { id: 12, name: "عطر ديور سوفاج الرجالي الفاخر - Dior Sauvage (100ml)", price: 310, pastPrice: 350, type: "عطور رجالي عالمية", size: "100 مل", rating: 4, feedbacks:[], image: "1737995797_2537-600x600.png", images: ["21434324.png", "1737995797_2537-600x600.png", "1737995797_2537-600x600.png"], description: "عطر ديور سوفاج الأيقوني للرجال، تركيبة فائقة الانتعاش والجرأة بنفحات البرغموت وأخشاب العنبر." },
             { id: 13, name: "عطر ماء الذهب شيك الأنيق - Parfumerie Chic (100ml)", price: 270, pastPrice: 350, type: "عطور للجنسين", size: "100 مل", rating: 4, feedbacks: [], image: "34325346546.png", images: ["34325346546.png", "34325346546.png"], description: "عطر شيك من ماء الذهب، تركيبة فاخرة ومثيرة تناسب الذوق الرفيع وبثبات عالي يدوم طويلاً." },
             { id: 14, name: "عطر ميني بلو دي شانيل باريس - Bleu De Chanel Paris VIP (30ml)", price: 110, pastPrice: 150, type: "عطور جيب VIP", size: "30 مل", rating: 4, feedbacks: [], image: "1752000958_3698-600x600.jpg", images: ["1752000958_3698-600x600.jpg", "1752000958_3698-600x600.jpg"], description: "إصدار جيب مميز وحجم مثالي للسفر والتنقل من عطر بلو دي شانيل باريس الفاخر الخشبي." },
@@ -537,62 +566,91 @@
         const allProducts = [...baseProducts, ...clothesProducts];
 
         // ============================================================
-        // COUPON SYSTEM
+        // SUPABASE REVIEWS FUNCTIONS
         // ============================================================
-        // Valid coupons: tahara_new@ , taharaaugusto#  (discount 100 EGP)
-        const validCoupons = {
-            'tahara_new@': 100,
-            'taharaaugusto#': 100
-        };
-        let appliedCoupon = null; // { code, discount }
+        let reviewsLoaded = false;
 
-        function applyCoupon() {
-            const input = document.getElementById('coupon-input');
-            const msg = document.getElementById('coupon-message');
-            const code = input.value.trim().toLowerCase();
-            // Security: sanitize code
-            const safeCode = Security.sanitizeText(code);
-
-            if (!safeCode) {
-                msg.innerHTML = '<span class="text-amber-600 dark:text-amber-400">الرجاء إدخال كود الخصم</span>';
-                return;
+        async function loadReviewsFromSupabase() {
+            try {
+                const { data, error } = await supabase
+                    .from('reviews')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                
+                // Group reviews by product_id
+                const reviewsMap = {};
+                if (data) {
+                    data.forEach(review => {
+                        const productId = review.product_id;
+                        if (!reviewsMap[productId]) reviewsMap[productId] = [];
+                        reviewsMap[productId].push({
+                            name: Security.sanitizeText(review.name),
+                            stars: Math.min(5, Math.max(1, parseInt(review.stars) || 5)),
+                            comment: Security.sanitizeText(review.comment)
+                        });
+                    });
+                }
+                
+                // Update product feedbacks
+                allProducts.forEach(product => {
+                    if (reviewsMap[product.id] && reviewsMap[product.id].length > 0) {
+                        product.feedbacks = reviewsMap[product.id];
+                        // Calculate average rating
+                        let sum = 0;
+                        product.feedbacks.forEach(f => sum += f.stars);
+                        product.rating = Math.min(5, Math.round(sum / product.feedbacks.length) || 4);
+                    } else {
+                        product.feedbacks = [];
+                        product.rating = 4;
+                    }
+                });
+                
+                reviewsLoaded = true;
+                return true;
+            } catch (error) {
+                console.error('Error loading reviews from Supabase:', error);
+                return false;
             }
+        }
 
-            // Check if valid
-            if (validCoupons[safeCode]) {
-                appliedCoupon = { code: safeCode, discount: validCoupons[safeCode] };
-                msg.innerHTML = `<span class="text-green-600 dark:text-green-400"><i class="fa-regular fa-circle-check"></i> تم تطبيق الخصم ${validCoupons[safeCode]} ج.م</span>`;
-                document.getElementById('coupon-apply-btn').disabled = true;
-                document.getElementById('coupon-input').disabled = true;
-                updateCartUI(); // refresh totals
-            } else {
-                msg.innerHTML = '<span class="text-red-600 dark:text-red-400">كود خصم غير صحيح</span>';
-                appliedCoupon = null;
-                document.getElementById('coupon-apply-btn').disabled = false;
-                document.getElementById('coupon-input').disabled = false;
-                updateCartUI();
+        async function saveReviewToSupabase(productId, name, stars, comment) {
+            try {
+                const { data, error } = await supabase
+                    .from('reviews')
+                    .insert([
+                        {
+                            product_id: productId,
+                            name: Security.sanitizeText(name),
+                            stars: Math.min(5, Math.max(1, parseInt(stars) || 5)),
+                            comment: Security.sanitizeText(comment)
+                        }
+                    ])
+                    .select();
+                
+                if (error) throw error;
+                return true;
+            } catch (error) {
+                console.error('Error saving review to Supabase:', error);
+                return false;
             }
         }
 
         // ============================================================
-        // CART FUNCTIONS (modified to include discount)
+        // LOAD FEEDBACKS (with Supabase + localStorage fallback)
         // ============================================================
-        let cart = [];
-        const WHATSAPP_NUMBER = "201121875820";
-        let currentSlideIdx = 0;
-        let sliderInterval;
-        const TOTAL_SLIDES = 3;
-        let activeFeedbackStars = 5;
-        let hasPurchasedBefore = false;
-
-        // Zoom state
-        let currentZoom = 1;
-        const MIN_ZOOM = 0.5, MAX_ZOOM = 4, ZOOM_STEP = 0.25;
-
-        let viewerImages = [], viewerCurrentIndex = 0, viewerProductId = null;
-
-        // ---- load feedbacks (same as original) ----
-        function loadFeedbacksFromStorage() {
+        async function loadFeedbacksFromStorage() {
+            // Try Supabase first
+            const success = await loadReviewsFromSupabase();
+            
+            if (success) {
+                // Save to localStorage as cache
+                saveFeedbacksToStorage();
+                return;
+            }
+            
+            // Fallback to localStorage
             const stored = localStorage.getItem('productFeedbacks');
             if (stored) {
                 try {
@@ -623,6 +681,7 @@
                 }
             }
         }
+
         function saveFeedbacksToStorage() {
             const feedbackData = {};
             allProducts.forEach(product => {
@@ -636,9 +695,58 @@
             });
             try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
         }
-        loadFeedbacksFromStorage();
 
-        // ---- update cart UI with discount ----
+        // ============================================================
+        // COUPON SYSTEM
+        // ============================================================
+        const validCoupons = {
+            'tahara_new@': 100,
+            'taharaaugusto#': 100
+        };
+        let appliedCoupon = null;
+
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input');
+            const msg = document.getElementById('coupon-message');
+            const code = input.value.trim().toLowerCase();
+            const safeCode = Security.sanitizeText(code);
+
+            if (!safeCode) {
+                msg.innerHTML = '<span class="text-amber-600 dark:text-amber-400">الرجاء إدخال كود الخصم</span>';
+                return;
+            }
+
+            if (validCoupons[safeCode]) {
+                appliedCoupon = { code: safeCode, discount: validCoupons[safeCode] };
+                msg.innerHTML = `<span class="text-green-600 dark:text-green-400"><i class="fa-regular fa-circle-check"></i> تم تطبيق الخصم ${validCoupons[safeCode]} ج.م</span>`;
+                document.getElementById('coupon-apply-btn').disabled = true;
+                document.getElementById('coupon-input').disabled = true;
+                updateCartUI();
+            } else {
+                msg.innerHTML = '<span class="text-red-600 dark:text-red-400">كود خصم غير صحيح</span>';
+                appliedCoupon = null;
+                document.getElementById('coupon-apply-btn').disabled = false;
+                document.getElementById('coupon-input').disabled = false;
+                updateCartUI();
+            }
+        }
+
+        // ============================================================
+        // CART FUNCTIONS
+        // ============================================================
+        let cart = [];
+        const WHATSAPP_NUMBER = "201121875820";
+        let currentSlideIdx = 0;
+        let sliderInterval;
+        const TOTAL_SLIDES = 3;
+        let activeFeedbackStars = 5;
+        let hasPurchasedBefore = false;
+
+        // Zoom state
+        let currentZoom = 1;
+        const MIN_ZOOM = 0.5, MAX_ZOOM = 4, ZOOM_STEP = 0.25;
+        let viewerImages = [], viewerCurrentIndex = 0, viewerProductId = null;
+
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const badge = document.getElementById('cart-badge');
@@ -655,12 +763,10 @@
                 container.innerHTML = `<div class="flex flex-col items-center justify-center h-48 text-slate-400 text-xs font-bold"><i class="fa-solid fa-basket-shopping text-3xl mb-2 text-brand"></i>السلة فارغة</div>`;
                 badge.classList.add('hidden');
                 checkoutBtn.disabled = true;
-                // reset discount display
                 discountRow.classList.add('hidden');
                 discountAmount.textContent = '0 ج.م';
                 totalAfterDiscount.textContent = '0 ج.م';
                 totalText.textContent = '0 ج.م';
-                // re-enable coupon if any
                 document.getElementById('coupon-apply-btn').disabled = false;
                 document.getElementById('coupon-input').disabled = false;
                 document.getElementById('coupon-input').value = '';
@@ -700,7 +806,6 @@
             badge.innerText = itemsCount;
             badge.classList.remove('hidden');
 
-            // Apply discount if coupon is active
             let discount = 0;
             if (appliedCoupon) {
                 discount = Math.min(appliedCoupon.discount, totalPrice);
@@ -715,12 +820,9 @@
                 discountRow.classList.add('hidden');
             }
             totalAfterDiscount.textContent = `${finalTotal} ج.م`;
-
-            // enable checkout if cart not empty
             checkoutBtn.disabled = false;
         }
 
-        // ---- other cart functions (add, changeQty, etc) ----
         function addToCart(id) {
             const product = findProduct(id);
             if (!product) return;
@@ -751,7 +853,6 @@
 
         function toggleCart() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
 
-        // ---- checkout ----
         function openCheckoutModal() { 
             if (cart.length === 0) return;
             document.getElementById('checkout-modal').classList.remove('hidden'); 
@@ -784,7 +885,6 @@
                 msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *الحساب: ${sub} ج.م*\n`;
             });
 
-            // include discount if any
             let discount = 0;
             if (appliedCoupon) {
                 discount = Math.min(appliedCoupon.discount, total);
@@ -809,25 +909,81 @@
             window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // ---- other helpers ----
         function findProduct(id) { return allProducts.find(p => p.id === id); }
         function showMainPage() {
             document.getElementById('details-view').classList.add('hidden');
             document.getElementById('main-view').classList.remove('hidden');
         }
 
-        // ---- render products & details (same as original, omitted for brevity but kept functional) ----
-        // (all original render functions are preserved; only cart related modified)
+        // ============================================================
+        // SUBMIT FEEDBACK (with Supabase)
+        // ============================================================
+        async function submitFeedback(e, productId) {
+            e.preventDefault();
+            if (!hasPurchasedBefore) {
+                alert("عذرًا! لا يمكنك ترك تقييم إلا بعد إتمام طلب شراء من الموقع أولاً.");
+                return;
+            }
+            
+            const nameInput = document.getElementById('fb-name');
+            const commentInput = document.getElementById('fb-comment');
+            const product = findProduct(productId);
+            if (!product) return;
+            
+            const safeName = Security.validateInput(nameInput.value, 50);
+            const safeComment = Security.validateInput(commentInput.value, 500);
+            
+            if (!safeName || !safeComment) {
+                alert("الرجاء إدخال اسم وتعليق صحيحين.");
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> جاري الإرسال...';
+            submitBtn.disabled = true;
+            
+            // Save to Supabase
+            const saved = await saveReviewToSupabase(productId, safeName, activeFeedbackStars, safeComment);
+            
+            if (saved) {
+                // Reload all reviews from Supabase
+                await loadReviewsFromSupabase();
+                // Save to localStorage cache
+                saveFeedbacksToStorage();
+            } else {
+                // Fallback: save locally
+                product.feedbacks.unshift({ name: safeName, stars: activeFeedbackStars, comment: safeComment });
+                let sum = 0;
+                product.feedbacks.forEach(f => sum += f.stars);
+                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
+                saveFeedbacksToStorage();
+            }
+            
+            // Reset form
+            nameInput.value = '';
+            commentInput.value = '';
+            setFeedbackStars(5);
+            
+            // Re-render
+            displayProducts();
+            viewProductDetails(productId);
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
 
         // ============================================================
-        // RENDER FUNCTIONS (copied from original with minor adjustments)
+        // RENDER FUNCTIONS
         // ============================================================
         function renderProductsInGrid(gridId, productsArray) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
             grid.innerHTML = '';
             if (productsArray.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-8 text-center text-slate-400 font-bold text-xs">لا توجد منتجات مطابقة لجميع نتائج البحث.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-8 text-center text-slate-400 font-bold text-xs">لا توجد منتجات مطابقة</div>`;
                 return;
             }
             const fragment = document.createDocumentFragment();
@@ -846,7 +1002,7 @@
                         <img src="${safeImage}" loading="lazy" alt="${safeName}" class="object-cover w-full h-full transition-transform hover:scale-105 duration-300" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23eee%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eصورة%3C/text%3E%3C/svg%3E'">
                         <span class="absolute top-2 right-2 price-save">-${savePercent}%</span>
                         <div class="absolute bottom-1 left-1 flex gap-1">
-                            <span class="amazon-badge">الاكثر مبيعاً </span>
+                            <span class="amazon-badge">الاكثر مبيعاً</span>
                             <span class="prime-badge"><i class="fa-brands fa-aws"></i> Prime</span>
                         </div>
                         <div class="absolute inset-0 bg-black/0 hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
@@ -937,7 +1093,7 @@
                                 <p class="text-slate-700 dark:text-slate-300 pr-4">${safeType}</p>
                             </div>
                             <div class="border-t border-slate-200 dark:border-slate-700 pt-2">
-                                <span class="font-bold text-brand block mb-0.5"><i class="fa-solid fa-up-right-and-down-left-from-center pl-1"></i>  الحجم / السعة:</span>
+                                <span class="font-bold text-brand block mb-0.5"><i class="fa-solid fa-up-right-and-down-left-from-center pl-1"></i> الحجم / السعة:</span>
                                 <p class="text-slate-700 dark:text-slate-300 pr-4">${safeSize}</p>
                             </div>
                         </div>
@@ -967,15 +1123,15 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // ---- feedback and other UI helpers (same as original) ----
         function renderFeedbackSection(product) {
             const fbContainer = document.getElementById('product-feedback-section');
             activeFeedbackStars = 5;
             let itemsHtml = '';
-            if (product.feedbacks.length === 0) {
+            
+            if (!product.feedbacks || product.feedbacks.length === 0) {
                 itemsHtml = `<p class="text-xs text-slate-400 dark:text-slate-500 text-center py-4 font-semibold">لا توجد تعليقات بعد، كن أول من يشارك رأيه!</p>`;
             } else {
-                itemsHtml = product.feedbacks.map(f => {
+                itemsHtml = product.feedbacks.slice(0, 20).map(f => {
                     const safeName = escapeHtml(f.name);
                     const safeComment = escapeHtml(f.comment);
                     return `
@@ -989,6 +1145,7 @@
                     `;
                 }).join('');
             }
+
             const disabledAttr = hasPurchasedBefore ? '' : 'disabled';
             const opacityClass = hasPurchasedBefore ? '' : 'opacity-60 cursor-not-allowed select-none';
             const alertHtml = hasPurchasedBefore ? '' : `
@@ -997,9 +1154,10 @@
                     <span>عذرًا، التقييم متاح فقط للعملاء الذين أتموا طلب شراء سابق.</span>
                 </div>
             `;
+
             fbContainer.innerHTML = `
                 <h4 class="text-base font-bold text-brand mb-4 flex items-center gap-1.5 border-b pb-2 border-slate-200 dark:border-slate-700 font-ruqaa">
-                    <i class="fa-solid fa-comments"></i> آراء العملاء والتعليقات (Feedback)
+                    <i class="fa-solid fa-comments"></i> آراء العملاء والتعليقات (${product.feedbacks.length} رأي)
                 </h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -1047,34 +1205,6 @@
             });
         }
 
-        function submitFeedback(e, productId) {
-            e.preventDefault();
-            if (!hasPurchasedBefore) {
-                alert("عذرًا! لا يمكنك ترك تقييم إلا بعد إتمام طلب شراء من الموقع أولاً.");
-                return;
-            }
-            const nameInput = document.getElementById('fb-name');
-            const commentInput = document.getElementById('fb-comment');
-            const product = findProduct(productId);
-            if (!product) return;
-            const safeName = Security.validateInput(nameInput.value, 50);
-            const safeComment = Security.validateInput(commentInput.value, 500);
-            if (!safeName || !safeComment) {
-                alert("الرجاء إدخال اسم وتعليق صحيحين.");
-                return;
-            }
-            product.feedbacks.unshift({ name: safeName, stars: activeFeedbackStars, comment: safeComment });
-            let sum = 0;
-            product.feedbacks.forEach(f => sum += f.stars);
-            product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
-            saveFeedbacksToStorage();
-            nameInput.value = '';
-            commentInput.value = '';
-            setFeedbackStars(5);
-            displayProducts();
-            viewProductDetails(productId);
-        }
-
         function adjQty(amt) {
             let el = document.getElementById('det-qty');
             let q = Math.max(1, parseInt(el.innerText) + amt);
@@ -1114,7 +1244,9 @@
             renderProductsInGrid('clothes-grid', clothesProducts);
         }
 
-        // ---- slider ----
+        // ============================================================
+        // SLIDER FUNCTIONS
+        // ============================================================
         function initSlider() {
             const slides = document.querySelectorAll('.slider-slide');
             const dotsContainer = document.getElementById('slider-dots');
@@ -1160,7 +1292,9 @@
         function startSliderAutoPlay() { sliderInterval = setInterval(nextSlide, 5000); }
         function resetSliderTimer() { clearInterval(sliderInterval); startSliderAutoPlay(); }
 
-        // ---- image viewer ----
+        // ============================================================
+        // IMAGE VIEWER FUNCTIONS
+        // ============================================================
         function openImageViewer(images, startIndex = 0, productId = null) {
             if (!images || images.length === 0) return;
             const safeImages = images.filter(img => typeof img === 'string').map(img => Security.sanitizeText(img));
@@ -1221,7 +1355,9 @@
             if (e.deltaY < 0) zoomIn(); else zoomOut();
         }, { passive: false });
 
-        // ---- search & category ----
+        // ============================================================
+        // SEARCH & CATEGORY FUNCTIONS
+        // ============================================================
         function handleSearch() {
             showMainPage();
             const query = document.getElementById('search-input').value.toLowerCase().trim();
@@ -1261,12 +1397,29 @@
             }
         }
 
-        // ---- init ----
-        window.onload = () => { 
-            initTheme(); 
-            displayProducts(); 
-            initSlider(); 
-            updateCartUI(); 
+        // ============================================================
+        // INITIALIZATION
+        // ============================================================
+        window.onload = async () => {
+            initTheme();
+            
+            // Show loading state
+            document.getElementById('products-grid').innerHTML = `
+                <div class="col-span-full flex items-center justify-center py-12">
+                    <div class="text-center">
+                        <div class="loading-spinner mx-auto"></div>
+                        <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">جاري تحميل التقييمات...</p>
+                    </div>
+                </div>
+            `;
+            
+            // Load reviews from Supabase
+            await loadFeedbacksFromStorage();
+            
+            // Render products
+            displayProducts();
+            initSlider();
+            updateCartUI();
         };
     </script>
 </body>
