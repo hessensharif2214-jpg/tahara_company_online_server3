@@ -14,6 +14,7 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,36 +188,17 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(184, 134, 11, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top-color: #b8860b;
-            animation: spin 1s ease-in-out infinite;
+            border-top-color: #ffffff;
+            animation: spin 0.8s ease-in-out infinite;
         }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        .review-loading {
-            text-align: center;
-            padding: 20px;
-            color: #b8860b;
-        }
-        .text-glow {
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-        }
-        .text-glow-light {
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-        }
-        .text-white-gradient {
-            background: linear-gradient(90deg, #ffffff, #ffd700, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .text-gold-shining-gradient {
-            background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -453,7 +435,7 @@
                 </div>
 
                 <button type="submit" class="w-full bg-brand hover:bg-[#9c7209] text-white py-2.5 rounded-xl font-bold text-center transition-all flex items-center justify-center gap-2 mt-2 text-xs">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> إرسال الطلب الي موظف خدمة العملاء للتاكيد
+                    <i class="fa-regular fa-envelope"></i> إرسال الطلب
                 </button>
             </form>
         </div>
@@ -481,12 +463,25 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // SUPABASE CONFIG - REPLACE WITH YOUR ACTUAL CREDENTIALS
+        // EMAILJS CONFIG - YOUR CREDENTIALS (Already Added!)
+        // ============================================================
+        const EMAILJS_PUBLIC_KEY = "RkiP9H3aosQgTrrue";
+        const EMAILJS_SERVICE_ID = "service_laq174b";
+        const EMAILJS_TEMPLATE_ID = "template_hp32tj9";
+
+        // Initialize EmailJS with YOUR public key
+        (function() {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+            console.log('✅ EmailJS initialized with your public key!');
+        })();
+
+        // ============================================================
+        // SUPABASE CONFIG
         // ============================================================
         const SUPABASE_URL = "https://hxhrxlpzyzmclptduddw.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4aHJ4bHB6eXptY2xwdGR1ZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2NTQyMTgsImV4cCI6MjEwMTIzMDIxOH0.ognJIEVB5xtWyUk8QKBVJ5Ep6sgjvUYMY8MKi5gzPXQ";
 
-        // Initialize Supabase client (using a unique name to avoid conflicts)
+        // Initialize Supabase client
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // ============================================================
@@ -526,7 +521,7 @@
         }
 
         // ============================================================
-        // PRODUCT DATA (with placeholder images that work offline)
+        // PRODUCT DATA
         // ============================================================
         const baseProducts = [
             { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345, type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "213231321.png", images: ["213231321.png", "324234234.png", "324234234.jpg"], description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
@@ -668,7 +663,6 @@
                 return true;
             } catch (e) {
                 console.error('Error loading reviews from Supabase:', e);
-                // Fallback to localStorage
                 const stored = localStorage.getItem('productFeedbacks');
                 if (stored) {
                     try {
@@ -716,7 +710,7 @@
             try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
         }
 
-        // ---- update cart UI with discount ----
+        // ---- update cart UI ----
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const badge = document.getElementById('cart-badge');
@@ -829,54 +823,116 @@
         }
         function closeCheckoutModal() { document.getElementById('checkout-modal').classList.add('hidden'); }
 
+        // ============================================================
+        // CHECKOUT WITH EMAILJS (YOUR CREDENTIALS ALREADY ADDED!)
+        // ============================================================
         function handleCheckout(e) {
             e.preventDefault();
-            const n = document.getElementById('cust-name').value.trim();
-            const p = document.getElementById('cust-phone').value.trim();
-            const g = document.getElementById('cust-gov').value.trim();
-            const a = document.getElementById('cust-address').value.trim();
-            const nt = document.getElementById('cust-notes').value.trim();
+            
+            // Get form data
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const gov = document.getElementById('cust-gov').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const notes = document.getElementById('cust-notes').value.trim();
 
-            const safeN = Security.sanitizeText(n);
-            const safeP = Security.sanitizeText(p);
-            const safeG = Security.sanitizeText(g);
-            const safeA = Security.sanitizeText(a);
-            const safeNt = Security.sanitizeText(nt);
+            // Validate
+            if (!name || !phone || !gov || !address) {
+                alert('الرجاء ملء جميع الحقول المطلوبة');
+                return;
+            }
 
-            let msg = `*يرجى تجهيز الطلب الخاص بي*\n\n*بيانات العميل:*\n▪️ *الاسم:* ${safeN}\n▪️ *الهاتف:* ${safeP}\n▪️ *المحافظة:* ${safeG}\n▪️ *العنوان:* ${safeA}\n`;
-            if (safeNt) msg += `▪️ *ملاحظات:* ${safeNt}\n`;
-
-            msg += `\n📦 *المنتجات:*\n`;
+            // Build products list
             let total = 0;
+            let productsList = '';
             cart.forEach((item, idx) => {
                 let sub = item.product.price * item.quantity;
                 total += sub;
-                const safeName = Security.sanitizeText(item.product.name);
-                msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *${sub} ج.م*\n`;
+                productsList += `${idx+1}. ${item.product.name}\n`;
+                productsList += `   الكمية: ${item.quantity} × ${item.product.price} ج.م = ${sub} ج.م\n`;
             });
 
+            // Apply coupon
             let discount = 0;
             if (appliedCoupon) {
                 discount = Math.min(appliedCoupon.discount, total);
-                msg += `\n🏷️ *كود الخصم:* ${appliedCoupon.code} (خصم ${discount} ج.م)`;
             }
             const finalTotal = total - discount;
-            msg += `\n\n💰 *الإجمالي:* _${total} ج.م_`;
-            msg += `\n💰 *الإجمالي بعد الخصم:* _${finalTotal} ج.م_`;
+            const couponCode = appliedCoupon ? appliedCoupon.code : 'لا يوجد';
 
-            hasPurchasedBefore = true;
-            cart = [];
-            appliedCoupon = null;
-            document.getElementById('coupon-input').value = '';
-            document.getElementById('coupon-input').disabled = false;
-            document.getElementById('coupon-apply-btn').disabled = false;
-            document.getElementById('coupon-message').innerHTML = '';
-            updateCartUI();
-            closeCheckoutModal();
-            toggleCart();
-            document.getElementById('checkout-form').reset();
-            showMainPage();
-            window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`, '_blank');
+            // Prepare email data
+            const templateParams = {
+                customer_name: name,
+                customer_phone: phone,
+                customer_gov: gov,
+                customer_address: address,
+                customer_notes: notes || 'لا يوجد',
+                products: productsList,
+                total: total + ' ج.م',
+                discount: discount > 0 ? discount + ' ج.م' : '0 ج.م',
+                final_total: finalTotal + ' ج.م',
+                coupon: couponCode,
+                order_date: new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' })
+            };
+
+            // Show loading state
+            const submitBtn = document.querySelector('#checkout-modal button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> جاري الإرسال...';
+            submitBtn.disabled = true;
+
+            // Send via EmailJS (silent - no redirect!)
+            emailjs.send(
+                EMAILJS_SERVICE_ID,      // Your Service ID
+                EMAILJS_TEMPLATE_ID,     // Your Template ID
+                templateParams
+            )
+            .then(function(response) {
+                console.log('✅ Order sent successfully!', response);
+                
+                // Reset everything
+                hasPurchasedBefore = true;
+                cart = [];
+                appliedCoupon = null;
+                document.getElementById('coupon-input').value = '';
+                document.getElementById('coupon-input').disabled = false;
+                document.getElementById('coupon-apply-btn').disabled = false;
+                document.getElementById('coupon-message').innerHTML = '';
+                updateCartUI();
+                closeCheckoutModal();
+                toggleCart();
+                document.getElementById('checkout-form').reset();
+                showMainPage();
+                
+                // Show success message
+                showNotification('✅ تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.');
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            })
+            .catch(function(error) {
+                console.error('❌ Failed to send order:', error);
+                alert('❌ حدث خطأ في إرسال الطلب. يرجى المحاولة مرة أخرى.');
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg text-sm font-bold';
+            notification.style.animation = 'fadeInDown 0.5s ease';
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s';
+                setTimeout(() => notification.remove(), 500);
+            }, 5000);
         }
 
         function findProduct(id) { return allProducts.find(p => p.id === id); }
@@ -1131,7 +1187,6 @@
             }
             
             try {
-                // Save to Supabase
                 const { error } = await supabaseClient
                     .from('reviews')
                     .insert([{
@@ -1143,7 +1198,6 @@
                 
                 if (error) throw error;
                 
-                // Reload reviews
                 await loadFeedbacksFromStorage();
                 saveFeedbacksToStorage();
                 
@@ -1351,6 +1405,9 @@
             displayProducts(); 
             initSlider(); 
             updateCartUI(); 
+            console.log('✅ Tahara Store loaded successfully!');
+            console.log('📧 EmailJS configured with your credentials');
+            console.log('🔗 Supabase connected');
         };
     </script>
 </body>
