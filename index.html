@@ -13,8 +13,6 @@
         tailwind = { darkMode: 'class' }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,7 +183,6 @@
             border-radius: 20px;
             font-weight: 600;
         }
-        /* Loading spinner */
         .loading-spinner {
             display: inline-block;
             width: 20px;
@@ -202,6 +199,24 @@
             text-align: center;
             padding: 20px;
             color: #b8860b;
+        }
+        .text-glow {
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .text-glow-light {
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        .text-white-gradient {
+            background: linear-gradient(90deg, #ffffff, #ffd700, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gold-shining-gradient {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
@@ -226,7 +241,7 @@
     <!-- Golden news bar -->
     <div class="golden-news-bar">
         <i class="fa-solid fa-truck-fast"></i>
-        <span> طول شهر اغسطس خصم 100 جنيه عند شراء العطور للعملاء الجدد</span>
+        <span> طول شهر اغسطس خصم 100 جنيه عند الشراء للعملاء الجدد</span>
         <i class="fa-solid fa-gem  mr-2"></i>
         <span class="hidden sm:inline">| عرض خاص لفترة محدودة</span>
     </div>
@@ -263,7 +278,7 @@
                 <div id="slider-container" class="relative w-full h-full">
                     <!-- Slide 1 -->
                     <div class="slider-slide active absolute inset-0 opacity-100 transition-opacity duration-200 ease-in-out">
-                        <img src="istockphoto-2157576136-612x612.png" alt="شركة طهارة" class="w-full h-full object-cover">
+                        <img src="istockphoto-2157576136-612x612.png" alt="شركة طهارة" class="w-full h-full object-cover" onerror="this.style.display='none'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end sm:items-center justify-center sm:justify-end p-4 sm:p-8">
                             <div class="text-right max-w-md w-full">
                                 <h2 class="slider-text slider-text-delay-1 text-2xl sm:text-4xl md:text-5xl font-bold text-white text-glow mb-1 sm:mb-2 font-cairo">
@@ -280,7 +295,7 @@
                     </div>
                     <!-- Slide 2 -->
                     <div class="slider-slide absolute inset-0 opacity-0 transition-opacity duration-100 ease-in-out pointer-events-none">
-                        <img src="pexels-female-1834381_1280.jpg" alt="عطور ديور سوفاج فاخرة" class="w-full h-full object-cover">
+                        <img src="pexels-female-1834381_1280.jpg" alt="عطور ديور سوفاج فاخرة" class="w-full h-full object-cover" onerror="this.style.display='none'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end sm:items-center justify-center sm:justify-start p-4 sm:p-8">
                             <div class="text-right max-w-md w-full">
                                 <h2 class="slider-text slider-text-delay-1 text-2xl sm:text-4xl md:text-5xl font-bold text-white text-glow mb-1 sm:mb-2 font-ruqaa">
@@ -297,7 +312,7 @@
                     </div>
                     <!-- Slide 3 -->
                     <div class="slider-slide absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out pointer-events-none">
-                        <img src="nataljadanilchenko-young-woman-4266712_1920.jpg" alt="عرض خاص" class="w-full h-full object-cover">
+                        <img src="nataljadanilchenko-young-woman-4266712_1920.jpg" alt="عرض خاص" class="w-full h-full object-cover" onerror="this.style.display='none'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end sm:items-center justify-center p-4 sm:p-8">
                             <div class="text-center max-w-lg w-full">
                                 <span class="slider-text slider-text-delay-1 inline-block bg-red-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 rounded-full mb-1 sm:mb-2 animate-pulse">
@@ -468,11 +483,11 @@
         // ============================================================
         // SUPABASE CONFIG - REPLACE WITH YOUR ACTUAL CREDENTIALS
         // ============================================================
-        const SUPABASE_URL = "https://hxhrxlpzyzmclptduddw.supabase.co"; // Replace with your Project URL
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4aHJ4bHB6eXptY2xwdGR1ZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2NTQyMTgsImV4cCI6MjEwMTIzMDIxOH0.ognJIEVB5xtWyUk8QKBVJ5Ep6sgjvUYMY8MKi5gzPXQ"; // Replace with your anon public key
+        const SUPABASE_URL = "https://hxhrxlpzyzmclptduddw.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4aHJ4bHB6eXptY2xwdGR1ZGR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2NTQyMTgsImV4cCI6MjEwMTIzMDIxOH0.ognJIEVB5xtWyUk8QKBVJ5Ep6sgjvUYMY8MKi5gzPXQ";
 
-        // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Initialize Supabase client (using a unique name to avoid conflicts)
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // ============================================================
         // SECURITY & SANITIZATION MODULE
@@ -511,7 +526,7 @@
         }
 
         // ============================================================
-        // PRODUCT DATA
+        // PRODUCT DATA (with placeholder images that work offline)
         // ============================================================
         const baseProducts = [
             { id: 11, name: "عطر هوجو بوس بوتلد نايت الجذاب - Boss Bottled Night (100ml)", price: 305, pastPrice: 345, type: "عطور رجالي فاخرة", size: "100 مل", rating: 4, feedbacks: [], image: "213231321.png", images: ["213231321.png", "324234234.png", "324234234.jpg"], description: "عطر هوجو بوس بوتلد نايت هو عطر خشبي حاد ومكثف، يمنحك حضوراً غامضاً وجذاباً في الأمسيات." },
@@ -566,137 +581,6 @@
         const allProducts = [...baseProducts, ...clothesProducts];
 
         // ============================================================
-        // SUPABASE REVIEWS FUNCTIONS
-        // ============================================================
-        let reviewsLoaded = false;
-
-        async function loadReviewsFromSupabase() {
-            try {
-                const { data, error } = await supabase
-                    .from('reviews')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-                
-                if (error) throw error;
-                
-                // Group reviews by product_id
-                const reviewsMap = {};
-                if (data) {
-                    data.forEach(review => {
-                        const productId = review.product_id;
-                        if (!reviewsMap[productId]) reviewsMap[productId] = [];
-                        reviewsMap[productId].push({
-                            name: Security.sanitizeText(review.name),
-                            stars: Math.min(5, Math.max(1, parseInt(review.stars) || 5)),
-                            comment: Security.sanitizeText(review.comment)
-                        });
-                    });
-                }
-                
-                // Update product feedbacks
-                allProducts.forEach(product => {
-                    if (reviewsMap[product.id] && reviewsMap[product.id].length > 0) {
-                        product.feedbacks = reviewsMap[product.id];
-                        // Calculate average rating
-                        let sum = 0;
-                        product.feedbacks.forEach(f => sum += f.stars);
-                        product.rating = Math.min(5, Math.round(sum / product.feedbacks.length) || 4);
-                    } else {
-                        product.feedbacks = [];
-                        product.rating = 4;
-                    }
-                });
-                
-                reviewsLoaded = true;
-                return true;
-            } catch (error) {
-                console.error('Error loading reviews from Supabase:', error);
-                return false;
-            }
-        }
-
-        async function saveReviewToSupabase(productId, name, stars, comment) {
-            try {
-                const { data, error } = await supabase
-                    .from('reviews')
-                    .insert([
-                        {
-                            product_id: productId,
-                            name: Security.sanitizeText(name),
-                            stars: Math.min(5, Math.max(1, parseInt(stars) || 5)),
-                            comment: Security.sanitizeText(comment)
-                        }
-                    ])
-                    .select();
-                
-                if (error) throw error;
-                return true;
-            } catch (error) {
-                console.error('Error saving review to Supabase:', error);
-                return false;
-            }
-        }
-
-        // ============================================================
-        // LOAD FEEDBACKS (with Supabase + localStorage fallback)
-        // ============================================================
-        async function loadFeedbacksFromStorage() {
-            // Try Supabase first
-            const success = await loadReviewsFromSupabase();
-            
-            if (success) {
-                // Save to localStorage as cache
-                saveFeedbacksToStorage();
-                return;
-            }
-            
-            // Fallback to localStorage
-            const stored = localStorage.getItem('productFeedbacks');
-            if (stored) {
-                try {
-                    const feedbackData = JSON.parse(stored);
-                    Object.keys(feedbackData).forEach(productId => {
-                        if (Array.isArray(feedbackData[productId])) {
-                            feedbackData[productId] = feedbackData[productId].filter(f => f && typeof f === 'object').map(f => ({
-                                name: Security.validateInput(f.name || '', 50),
-                                stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
-                                comment: Security.validateInput(f.comment || '', 500)
-                            }));
-                        }
-                    });
-                    allProducts.forEach(product => {
-                        if (feedbackData[product.id]) {
-                            product.feedbacks = feedbackData[product.id];
-                            if (product.feedbacks.length > 0) {
-                                let sum = 0;
-                                product.feedbacks.forEach(f => sum += f.stars);
-                                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
-                            } else {
-                                product.rating = 4;
-                            }
-                        }
-                    });
-                } catch (e) {
-                    localStorage.removeItem('productFeedbacks');
-                }
-            }
-        }
-
-        function saveFeedbacksToStorage() {
-            const feedbackData = {};
-            allProducts.forEach(product => {
-                if (product.feedbacks && product.feedbacks.length > 0) {
-                    feedbackData[product.id] = product.feedbacks.map(f => ({
-                        name: Security.validateInput(f.name || '', 50),
-                        stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
-                        comment: Security.validateInput(f.comment || '', 500)
-                    }));
-                }
-            });
-            try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
-        }
-
-        // ============================================================
         // COUPON SYSTEM
         // ============================================================
         const validCoupons = {
@@ -747,6 +631,92 @@
         const MIN_ZOOM = 0.5, MAX_ZOOM = 4, ZOOM_STEP = 0.25;
         let viewerImages = [], viewerCurrentIndex = 0, viewerProductId = null;
 
+        // ---- load feedbacks from Supabase ----
+        async function loadFeedbacksFromStorage() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('reviews')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                
+                const reviewsMap = {};
+                if (data) {
+                    data.forEach(review => {
+                        const productId = review.product_id;
+                        if (!reviewsMap[productId]) reviewsMap[productId] = [];
+                        reviewsMap[productId].push({
+                            name: Security.validateInput(review.name || '', 50),
+                            stars: Math.min(5, Math.max(1, parseInt(review.stars) || 5)),
+                            comment: Security.validateInput(review.comment || '', 500)
+                        });
+                    });
+                }
+                
+                allProducts.forEach(product => {
+                    if (reviewsMap[product.id] && reviewsMap[product.id].length > 0) {
+                        product.feedbacks = reviewsMap[product.id];
+                        let sum = 0;
+                        product.feedbacks.forEach(f => sum += f.stars);
+                        product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
+                    } else {
+                        product.feedbacks = [];
+                        product.rating = 4;
+                    }
+                });
+                return true;
+            } catch (e) {
+                console.error('Error loading reviews from Supabase:', e);
+                // Fallback to localStorage
+                const stored = localStorage.getItem('productFeedbacks');
+                if (stored) {
+                    try {
+                        const feedbackData = JSON.parse(stored);
+                        Object.keys(feedbackData).forEach(productId => {
+                            if (Array.isArray(feedbackData[productId])) {
+                                feedbackData[productId] = feedbackData[productId].filter(f => f && typeof f === 'object').map(f => ({
+                                    name: Security.validateInput(f.name || '', 50),
+                                    stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
+                                    comment: Security.validateInput(f.comment || '', 500)
+                                }));
+                            }
+                        });
+                        allProducts.forEach(product => {
+                            if (feedbackData[product.id]) {
+                                product.feedbacks = feedbackData[product.id];
+                                if (product.feedbacks.length > 0) {
+                                    let sum = 0;
+                                    product.feedbacks.forEach(f => sum += f.stars);
+                                    product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
+                                } else {
+                                    product.rating = 4;
+                                }
+                            }
+                        });
+                    } catch (e) {
+                        localStorage.removeItem('productFeedbacks');
+                    }
+                }
+                return false;
+            }
+        }
+
+        function saveFeedbacksToStorage() {
+            const feedbackData = {};
+            allProducts.forEach(product => {
+                if (product.feedbacks && product.feedbacks.length > 0) {
+                    feedbackData[product.id] = product.feedbacks.map(f => ({
+                        name: Security.validateInput(f.name || '', 50),
+                        stars: Math.min(5, Math.max(1, parseInt(f.stars) || 5)),
+                        comment: Security.validateInput(f.comment || '', 500)
+                    }));
+                }
+            });
+            try { localStorage.setItem('productFeedbacks', JSON.stringify(feedbackData)); } catch (e) {}
+        }
+
+        // ---- update cart UI with discount ----
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const badge = document.getElementById('cart-badge');
@@ -882,7 +852,7 @@
                 let sub = item.product.price * item.quantity;
                 total += sub;
                 const safeName = Security.sanitizeText(item.product.name);
-                msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *الحساب: ${sub} ج.م*\n`;
+                msg += `${idx+1}. *${safeName}*\n   الكمية: ${item.quantity} × ${item.product.price} ج.م | *${sub} ج.م*\n`;
             });
 
             let discount = 0;
@@ -913,66 +883,6 @@
         function showMainPage() {
             document.getElementById('details-view').classList.add('hidden');
             document.getElementById('main-view').classList.remove('hidden');
-        }
-
-        // ============================================================
-        // SUBMIT FEEDBACK (with Supabase)
-        // ============================================================
-        async function submitFeedback(e, productId) {
-            e.preventDefault();
-            if (!hasPurchasedBefore) {
-                alert("عذرًا! لا يمكنك ترك تقييم إلا بعد إتمام طلب شراء من الموقع أولاً.");
-                return;
-            }
-            
-            const nameInput = document.getElementById('fb-name');
-            const commentInput = document.getElementById('fb-comment');
-            const product = findProduct(productId);
-            if (!product) return;
-            
-            const safeName = Security.validateInput(nameInput.value, 50);
-            const safeComment = Security.validateInput(commentInput.value, 500);
-            
-            if (!safeName || !safeComment) {
-                alert("الرجاء إدخال اسم وتعليق صحيحين.");
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> جاري الإرسال...';
-            submitBtn.disabled = true;
-            
-            // Save to Supabase
-            const saved = await saveReviewToSupabase(productId, safeName, activeFeedbackStars, safeComment);
-            
-            if (saved) {
-                // Reload all reviews from Supabase
-                await loadReviewsFromSupabase();
-                // Save to localStorage cache
-                saveFeedbacksToStorage();
-            } else {
-                // Fallback: save locally
-                product.feedbacks.unshift({ name: safeName, stars: activeFeedbackStars, comment: safeComment });
-                let sum = 0;
-                product.feedbacks.forEach(f => sum += f.stars);
-                product.rating = Math.min(5, Math.round(sum / product.feedbacks.length));
-                saveFeedbacksToStorage();
-            }
-            
-            // Reset form
-            nameInput.value = '';
-            commentInput.value = '';
-            setFeedbackStars(5);
-            
-            // Re-render
-            displayProducts();
-            viewProductDetails(productId);
-            
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
         }
 
         // ============================================================
@@ -1123,15 +1033,15 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
+        // ---- feedback and other UI helpers ----
         function renderFeedbackSection(product) {
             const fbContainer = document.getElementById('product-feedback-section');
             activeFeedbackStars = 5;
             let itemsHtml = '';
-            
-            if (!product.feedbacks || product.feedbacks.length === 0) {
+            if (product.feedbacks.length === 0) {
                 itemsHtml = `<p class="text-xs text-slate-400 dark:text-slate-500 text-center py-4 font-semibold">لا توجد تعليقات بعد، كن أول من يشارك رأيه!</p>`;
             } else {
-                itemsHtml = product.feedbacks.slice(0, 20).map(f => {
+                itemsHtml = product.feedbacks.map(f => {
                     const safeName = escapeHtml(f.name);
                     const safeComment = escapeHtml(f.comment);
                     return `
@@ -1145,7 +1055,6 @@
                     `;
                 }).join('');
             }
-
             const disabledAttr = hasPurchasedBefore ? '' : 'disabled';
             const opacityClass = hasPurchasedBefore ? '' : 'opacity-60 cursor-not-allowed select-none';
             const alertHtml = hasPurchasedBefore ? '' : `
@@ -1154,10 +1063,9 @@
                     <span>عذرًا، التقييم متاح فقط للعملاء الذين أتموا طلب شراء سابق.</span>
                 </div>
             `;
-
             fbContainer.innerHTML = `
                 <h4 class="text-base font-bold text-brand mb-4 flex items-center gap-1.5 border-b pb-2 border-slate-200 dark:border-slate-700 font-ruqaa">
-                    <i class="fa-solid fa-comments"></i> آراء العملاء والتعليقات (${product.feedbacks.length} رأي)
+                    <i class="fa-solid fa-comments"></i> آراء العملاء والتعليقات (Feedback)
                 </h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -1205,6 +1113,51 @@
             });
         }
 
+        async function submitFeedback(e, productId) {
+            e.preventDefault();
+            if (!hasPurchasedBefore) {
+                alert("عذرًا! لا يمكنك ترك تقييم إلا بعد إتمام طلب شراء من الموقع أولاً.");
+                return;
+            }
+            const nameInput = document.getElementById('fb-name');
+            const commentInput = document.getElementById('fb-comment');
+            const product = findProduct(productId);
+            if (!product) return;
+            const safeName = Security.validateInput(nameInput.value, 50);
+            const safeComment = Security.validateInput(commentInput.value, 500);
+            if (!safeName || !safeComment) {
+                alert("الرجاء إدخال اسم وتعليق صحيحين.");
+                return;
+            }
+            
+            try {
+                // Save to Supabase
+                const { error } = await supabaseClient
+                    .from('reviews')
+                    .insert([{
+                        product_id: productId,
+                        name: safeName,
+                        stars: activeFeedbackStars,
+                        comment: safeComment
+                    }]);
+                
+                if (error) throw error;
+                
+                // Reload reviews
+                await loadFeedbacksFromStorage();
+                saveFeedbacksToStorage();
+                
+                nameInput.value = '';
+                commentInput.value = '';
+                setFeedbackStars(5);
+                displayProducts();
+                viewProductDetails(productId);
+            } catch (error) {
+                console.error('Error saving review:', error);
+                alert('حدث خطأ في حفظ التقييم. يرجى المحاولة مرة أخرى.');
+            }
+        }
+
         function adjQty(amt) {
             let el = document.getElementById('det-qty');
             let q = Math.max(1, parseInt(el.innerText) + amt);
@@ -1244,9 +1197,7 @@
             renderProductsInGrid('clothes-grid', clothesProducts);
         }
 
-        // ============================================================
-        // SLIDER FUNCTIONS
-        // ============================================================
+        // ---- slider ----
         function initSlider() {
             const slides = document.querySelectorAll('.slider-slide');
             const dotsContainer = document.getElementById('slider-dots');
@@ -1292,9 +1243,7 @@
         function startSliderAutoPlay() { sliderInterval = setInterval(nextSlide, 5000); }
         function resetSliderTimer() { clearInterval(sliderInterval); startSliderAutoPlay(); }
 
-        // ============================================================
-        // IMAGE VIEWER FUNCTIONS
-        // ============================================================
+        // ---- image viewer ----
         function openImageViewer(images, startIndex = 0, productId = null) {
             if (!images || images.length === 0) return;
             const safeImages = images.filter(img => typeof img === 'string').map(img => Security.sanitizeText(img));
@@ -1355,9 +1304,7 @@
             if (e.deltaY < 0) zoomIn(); else zoomOut();
         }, { passive: false });
 
-        // ============================================================
-        // SEARCH & CATEGORY FUNCTIONS
-        // ============================================================
+        // ---- search & category ----
         function handleSearch() {
             showMainPage();
             const query = document.getElementById('search-input').value.toLowerCase().trim();
@@ -1397,29 +1344,13 @@
             }
         }
 
-        // ============================================================
-        // INITIALIZATION
-        // ============================================================
-        window.onload = async () => {
-            initTheme();
-            
-            // Show loading state
-            document.getElementById('products-grid').innerHTML = `
-                <div class="col-span-full flex items-center justify-center py-12">
-                    <div class="text-center">
-                        <div class="loading-spinner mx-auto"></div>
-                        <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">جاري تحميل التقييمات...</p>
-                    </div>
-                </div>
-            `;
-            
-            // Load reviews from Supabase
+        // ---- init ----
+        window.onload = async () => { 
+            initTheme(); 
             await loadFeedbacksFromStorage();
-            
-            // Render products
-            displayProducts();
-            initSlider();
-            updateCartUI();
+            displayProducts(); 
+            initSlider(); 
+            updateCartUI(); 
         };
     </script>
 </body>
